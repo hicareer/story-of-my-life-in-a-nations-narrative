@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>당신의 결과는?</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f9fafb;
+    }
+    .emoji {
+      font-size: 2.5rem;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center p-6">
+  <div class="max-w-2xl w-full bg-white rounded-2xl shadow-lg p-6">
+    <h1 class="text-2xl font-bold text-center mb-4">🌟 당신의 결과는?</h1>
+    <div id="result" class="space-y-4"></div>
+    <div class="text-center mt-8">
+      <a href="question.html" class="text-blue-500 underline">테스트 다시 하기</a>
+    </div>
+  </div>
+
+  <script>
+    // 결과 코드 받기
+    const urlParams = new URLSearchParams(window.location.search);
+    const resultCode = urlParams.get('code');
+
+    async function loadResultData() {
+      try {
+        const response = await fetch('result_data.json');
+        const data = await response.json();
+        const result = data.find(item => item.code === resultCode);
+
+        if (!result) {
+          document.getElementById('result').innerHTML = '<p>결과를 찾을 수 없습니다. 다시 시도해 주세요.</p>';
+          return;
+        }
+
+        const container = document.getElementById('result');
+        container.innerHTML = `
+          <div class="text-center">
+            <div class="emoji mb-2">${result.emoji}</div>
+            <h2 class="text-xl font-semibold">${result.title}</h2>
+            <p class="text-gray-600 text-sm mt-1">${result.subtitle}</p>
+          </div>
+          <div class="mt-4">
+            <h3 class="font-semibold mb-1">📌 키워드</h3>
+            <ul class="list-disc list-inside text-gray-700">
+              ${result.keywords.map(k => `<li>${k}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="mt-4">
+            <h3 class="font-semibold mb-1">📈 당신의 인생 그래프</h3>
+            <p class="text-gray-700">${result.graph}</p>
+          </div>
+        `;
+      } catch (error) {
+        console.error('결과 불러오기 오류:', error);
+        document.getElementById('result').innerHTML = '<p>결과 데이터를 불러오는 중 오류가 발생했습니다.</p>';
+      }
+    }
+
+    loadResultData();
+  </script>
+</body>
+</html>
