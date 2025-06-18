@@ -41,7 +41,7 @@
     }
 
     .title {
-      font-size: 2.2em;
+      font-size: 1.8em;
       font-weight: 700;
       margin-bottom: 1.5rem;
       line-height: 1.5;
@@ -54,6 +54,7 @@
       border-radius: 8px;
       padding: 12px 24px;
       font-size: 1.1em;
+      font-family: 'Heritage', serif;
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -66,11 +67,21 @@
     .copyright {
       position: absolute;
       bottom: 20px;
-      font-size: 0.7em;
-      font-weight: 300;
-      line-height: 1.6;
+      width: 100%;
       text-align: center;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      font-family: 'Heritage', serif;
+    }
+
+    .copyright .line1 {
+      font-size: 0.75em;
+      font-weight: 300;
+    }
+
+    .copyright .line2 {
+      font-size: 0.65em;
+      font-weight: 300;
     }
   </style>
 </head>
@@ -83,13 +94,13 @@
     <button class="start-button" onclick="startTest()">시작하기</button>
   </div>
   <div class="copyright">
-    <div>ⓒ 2025. 하이커리어(Hi Career). All rights reserved.</div>
-    <div>본 콘텐츠는 하이커리어(Hi Career)가 기획 및 제작하였으며 무단 복제 및 배포를 금합니다.</div>
+    <div class="line1">ⓒ 2025. 하이커리어(Hi Career). All rights reserved.</div>
+    <div class="line2">본 콘텐츠는 하이커리어(Hi Career)가 기획 및 제작하였으며 무단 복제 및 배포를 금합니다.</div>
   </div>
 
   <script>
     function startTest() {
-      window.location.href = "question.html";
+      window.location.href = "question.html?step=1";
     }
   </script>
 </body>
