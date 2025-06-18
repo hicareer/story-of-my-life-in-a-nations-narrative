@@ -99,9 +99,10 @@
   </div>
 
   <script>
-    function startTest() {
-      window.location.href = "./question.html?step=1";
-    }
-  </script>
+  function startTest() {
+    const base = location.pathname.replace(/index\\.html$/, '');
+    window.location.href = base + "question.html?step=1";
+  }
+</script>
 </body>
 </html>
