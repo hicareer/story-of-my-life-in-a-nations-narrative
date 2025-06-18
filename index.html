@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>나의 인생은<br>어떤 나라의 서사와 닮았을까?</title>
+  <title>나의 인생은 어떤 나라의 서사와 닮았을까?</title>
   <style>
     @font-face {
       font-family: 'HeritageBold';
@@ -22,21 +22,27 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'HeritageLight';
       color: #f4ede3;
     }
 
     body {
       background: url('지도 배경.png') no-repeat center center fixed;
       background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 4vh 2vw;
+      padding: 0 5vw;
+      font-family: 'HeritageLight';
     }
 
     h1 {
-      font-size: 2.2em;
+      font-size: 1.8em;
       font-family: 'HeritageBold';
-      margin-bottom: 1em;
+      line-height: 1.4;
+      margin-bottom: 1.2em;
     }
 
     p.intro {
@@ -63,11 +69,14 @@
 
     footer {
       position: fixed;
-      bottom: 10px;
+      bottom: 8px;
       left: 0;
       width: 100%;
-      font-size: 0.7em;
+      font-size: 0.6em;
+      text-align: center;
+      line-height: 1.5;
       opacity: 0.6;
+      padding: 0 1em;
     }
   </style>
 </head>
@@ -79,14 +88,12 @@
   </main>
 
   <footer>
-    © 2025. 하이커리어(Hi Career). All rights reserved.<br />
-    본 콘텐츠는 하이커리어(Hi Career)가 기획 및 제작하였으며 무단 복제 및 배포를 금합니다.
+    ⓒ 2025. 하이커리어(Hi Career). All rights reserved. 본 콘텐츠는 하이커리어(Hi Career)가 기획 및 제작하였으며 무단 복제 및 배포를 금합니다.
   </footer>
 
   <script>
     function startTest() {
-      alert("테스트가 곧 연결됩니다. 이후 단계는 별도 구현이 필요합니다.");
-      // 여기서 테스트 페이지 이동 또는 질문 로직 구현 예정
+      window.location.href = "question.html";
     }
   </script>
 </body>
