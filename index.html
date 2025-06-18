@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나의 인생은 어떤 나라의 서사와 닮았을까?</title>
+  <style>
+    @font-face {
+      font-family: 'HeritageBold';
+      src: url('국립박물관문화재단클래식B.ttf');
+    }
+    @font-face {
+      font-family: 'HeritageMedium';
+      src: url('국립박물관문화재단클래식M.ttf');
+    }
+    @font-face {
+      font-family: 'HeritageLight';
+      src: url('국립박물관문화재단클래식L.ttf');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'HeritageLight';
+      color: #f4ede3;
+    }
+
+    body {
+      background: url('지도 배경.png') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      padding: 4vh 2vw;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      font-family: 'HeritageBold';
+      margin-bottom: 1em;
+    }
+
+    p.intro {
+      font-size: 1em;
+      font-family: 'HeritageMedium';
+      margin-bottom: 2em;
+      opacity: 0.9;
+    }
+
+    button.start-btn {
+      font-family: 'HeritageBold';
+      font-size: 1.1em;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid #f4ede3;
+      padding: 0.8em 2em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button.start-btn:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      font-size: 0.7em;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>나의 인생은 어떤 나라의 서사와 닮았을까?</h1>
+    <p class="intro">삶의 흐름과 감정, 선택의 방식이 한 편의 서사라면,<br/>당신은 어떤 국가의 이야기와 닮아 있을까요?</p>
+    <button class="start-btn" onclick="startTest()">시작하기</button>
+  </main>
+
+  <footer>
+    © 2025. 하이커리어(Hi Career). All rights reserved.<br />
+    본 콘텐츠는 하이커리어(Hi Career)가 기획 및 제작하였으며 무단 복제 및 배포를 금합니다.
+  </footer>
+
+  <script>
+    function startTest() {
+      alert("테스트가 곧 연결됩니다. 이후 단계는 별도 구현이 필요합니다.");
+      // 여기서 테스트 페이지 이동 또는 질문 로직 구현 예정
+    }
+  </script>
+</body>
+</html>
