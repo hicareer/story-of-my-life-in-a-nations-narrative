@@ -1,10 +1,51 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>당신의 인생 유형은?</title>
-  <link href="style.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>질문 진행 중...</title>
+  <style>
+    body {
+      background: url("지도 배경.png") no-repeat center center fixed;
+      background-size: cover;
+      font-family: sans-serif;
+      color: #f4ede3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.4em;
+      margin-bottom: 2rem;
+    }
+
+    .answer-button {
+      display: block;
+      margin: 0.5rem auto;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #f4ede3;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #f4ede3;
+      transition: all 0.3s;
+    }
+
+    .answer-button:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <h1 id="question">질문을 불러오는 중입니다...</h1>
+  <div id="answers"></div>
+
   <script>
     const questions = [
       {
@@ -38,23 +79,26 @@
       {
         q: "삶을 하나의 이미지로 표현한다면?",
         a: ["파도 🌊", "성벽 🧱", "불꽃 🔥"]
-      ]
+      }
     ];
 
     let qIndex = 0;
-    const score = {"🌊": 0, "🧱": 0, "🚀": 0, "🌿": 0, "🔥": 0, "🛡": 0};
+    const score = { "🌊": 0, "🧱": 0, "🚀": 0, "🌿": 0, "🔥": 0, "🛡": 0 };
 
     function showQuestion() {
       const q = document.getElementById("question");
       const btns = document.getElementById("answers");
+
       q.innerText = questions[qIndex].q;
       btns.innerHTML = "";
+
       questions[qIndex].a.forEach(ans => {
         const btn = document.createElement("button");
         btn.innerText = ans;
+        btn.className = "answer-button";
         btn.onclick = () => {
-          const icon = ans.match(/[\u{1F300}-\u{1F9FF}]/u)[0];
-          score[icon]++;
+          const icon = ans.match(/[\u{1F300}-\u{1F9FF}]/u)?.[0];
+          if (icon) score[icon]++;
           qIndex++;
           if (qIndex < questions.length) {
             showQuestion();
@@ -63,18 +107,11 @@
             location.href = "result.html";
           }
         };
-        btn.className = "answer-button";
         btns.appendChild(btn);
       });
     }
 
     window.onload = showQuestion;
   </script>
-</head>
-<body>
-  <div class="container">
-    <h1 id="question"></h1>
-    <div id="answers"></div>
-  </div>
 </body>
 </html>
