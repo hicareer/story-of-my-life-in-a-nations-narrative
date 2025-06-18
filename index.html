@@ -23,7 +23,6 @@
       padding: 0;
       box-sizing: border-box;
       color: #f4ede3;
-      font-family: 'HeritageLight';
     }
 
     body {
@@ -36,6 +35,7 @@
       align-items: center;
       text-align: center;
       padding: 0 5vw;
+      font-family: 'HeritageLight';
     }
 
     h1 {
@@ -74,7 +74,7 @@
       width: 100%;
       font-size: 0.6em;
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.5;
       opacity: 0.6;
       padding: 0 1em;
     }
@@ -83,19 +83,19 @@
 <body>
   <main>
     <h1>나의 인생은<br>어떤 나라의 서사와 닮았을까?</h1>
-    <p class="intro">삶의 흐름과 감정, 선택의 방식이 한 편의 서사라면,<br />당신은 어떤 나라의 이야기와 닮아 있을까요?</p>
+    <p class="intro">삶의 흐름과 감정, 선택의 방식이 한 편의 서사라면,<br/>당신은 어떤 나라의 이야기와 닮아 있을까요?</p>
     <button class="start-btn" onclick="startTest()">시작하기</button>
   </main>
 
   <footer>
-    ⓒ 2025. 하이커리어(Hi Career). All rights reserved.
-    본 콘텐츠는 하이커리어(Hi Career)가 기획 및 제작하였으며 무단 복제 및 배포를 금합니다.
+    ⓒ 2025. 하이커리어(Hi Career). All rights reserved. 본 콘텐츠는 하이커리어(Hi Career)가 기획 및 제작하였으며 무단 복제 및 배포를 금합니다.
   </footer>
 
   <script>
-  function startTest() {
-    window.location.href = "https://hicareer.github.io/story-of-my-life-in-a-nations-narrative/question.html";
-  }
-</script>
+    function startTest() {
+      // ✅ 절대 경로로 지정
+      window.location.href = "https://hicareer.github.io/story-of-my-life-in-a-nations-narrative/question.html";
+    }
+  </script>
 </body>
 </html>
