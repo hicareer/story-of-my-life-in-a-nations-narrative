@@ -1,99 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>당신의 인생 유형은?</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>테스트 결과</title>
   <style>
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: #f9fafb;
-    }
-    .emoji {
-      font-size: 2.5rem;
-    }
+    body { font-family: 'Pretendard', sans-serif; padding: 2rem; line-height: 1.6; background: #f7f7f7; }
+    .result-box { background: white; padding: 2rem; border-radius: 12px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .title { font-size: 1.8rem; font-weight: bold; margin-bottom: 1rem; }
+    .description { margin-bottom: 1rem; }
+    .keywords { margin-top: 1.5rem; font-weight: bold; color: #555; }
+    .graph { margin-top: 0.5rem; color: #777; }
   </style>
 </head>
-<body class="flex flex-col items-center p-6">
-  <div class="max-w-2xl w-full bg-white rounded-2xl shadow-lg p-6">
-    <h1 class="text-2xl font-bold text-center mb-4">🌟 당신의 결과는?</h1>
-    <div id="result" class="space-y-4"></div>
-    <div class="text-center mt-8">
-      <a href="question.html" class="text-blue-500 underline">테스트 다시 하기</a>
-    </div>
+<body>
+  <div class="result-box">
+    <div class="title" id="result-title">결과를 불러오는 중...</div>
+    <div class="description" id="result-description"></div>
+    <div class="keywords" id="result-keywords"></div>
+    <div class="graph" id="result-graph"></div>
   </div>
 
   <script>
-    const results = [
-      {
-        code: "🧱+🚀+🛡",
-        emoji: "🏰",
-        title: "고구려",
-        subtitle: "당신은, 중심이 단단한 확장가",
-        keywords: ["확장", "수성", "중심축", "결기", "전략적 판단"],
-        graph: "초반 급상승 → 외부 충돌 → 방어와 내면 강화 → 꾸준한 확장"
-      },
-      {
-        code: "🌊+🌿+🔥",
-        emoji: "🎨",
-        title: "알 안달루스",
-        subtitle: "당신은, 조화로운 감각의 예술가",
-        keywords: ["다양성", "융합", "감성", "이상", "균형"],
-        graph: "서서히 고조 → 창조적 황금기 → 외부 변화 → 기억과 흔적으로 이어짐"
-      },
-      {
-        code: "🧱+🌿+🔥",
-        emoji: "📚",
-        title: "헬레니즘 제국",
-        subtitle: "당신은, 겹겹의 정체성을 품은 해석자",
-        keywords: ["혼종성", "지성", "미학", "다중정체성", "균형감각"],
-        graph: "다층적 시작 → 혼합기 → 일시적 혼란 → 내면화된 안정감"
-      }
-      // ... 나머지 9개도 이 형식으로 추가하면 됩니다.
-    ];
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
 
-    function getTop3Emojis(scoreObj) {
-      const sorted = Object.entries(scoreObj).sort((a, b) => b[1] - a[1]);
-      return sorted.slice(0, 3).map(([emoji]) => emoji).join("+");
-    }
-
-    function loadResult() {
-      const raw = localStorage.getItem("score");
-      if (!raw) {
-        document.getElementById("result").innerHTML = "<p>결과를 불러올 수 없습니다.</p>";
-        return;
-      }
-
-      const score = JSON.parse(raw);
-      const code = getTop3Emojis(score);
-      const result = results.find(r => r.code === code);
-
-      if (!result) {
-        document.getElementById("result").innerHTML = "<p>결과 매칭 실패! 테스트를 다시 해보세요.</p>";
-        return;
-      }
-
-      document.getElementById("result").innerHTML = `
-        <div class="text-center">
-          <div class="emoji mb-2">${result.emoji}</div>
-          <h2 class="text-xl font-semibold">${result.title}</h2>
-          <p class="text-gray-600 text-sm mt-1">${result.subtitle}</p>
-        </div>
-        <div class="mt-4">
-          <h3 class="font-semibold mb-1">📌 키워드</h3>
-          <ul class="list-disc list-inside text-gray-700">
-            ${result.keywords.map(k => `<li>${k}</li>`).join("")}
-          </ul>
-        </div>
-        <div class="mt-4">
-          <h3 class="font-semibold mb-1">📈 당신의 인생 그래프</h3>
-          <p class="text-gray-700">${result.graph}</p>
-        </div>
-      `;
-    }
-
-    loadResult();
+    fetch('test-data.json')
+      .then(response => response.json())
+      .then(data => {
+        const result = data.find(item => item.code === code);
+        if (result) {
+          document.getElementById('result-title').textContent = result.title;
+          document.getElementById('result-description').textContent = result.description;
+          document.getElementById('result-keywords').textContent = '🔑 키워드: ' + result.keywords.join(', ');
+          document.getElementById('result-graph').textContent = '📈 삶의 흐름: ' + result.graph;
+        } else {
+          document.getElementById('result-title').textContent = '결과를 찾을 수 없습니다.';
+        }
+      })
+      .catch(error => {
+        console.error('데이터를 불러오는 중 오류 발생:', error);
+        document.getElementById('result-title').textContent = '결과를 불러오는 데 실패했습니다.';
+      });
   </script>
 </body>
 </html>
