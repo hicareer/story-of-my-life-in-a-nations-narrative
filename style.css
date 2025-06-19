@@ -1,21 +1,38 @@
+/* 폰트 정의 */
+@font-face {
+    font-family: 'Paperlogy';
+    src: url('Paperlogy-4Regular.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    src: url('Paperlogy-5Medium.ttf') format('truetype');
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Paperlogy', sans-serif; /* 기본 폰트 적용 */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f4f7f6;
+    background-color: #f4f7f6; /* 기본 배경색 (배경 이미지 추가 시 변경 가능) */
     color: #333;
+    font-weight: 400; /* 본문 기본 굵기 Regular */
+    line-height: 1.6; /* 가독성을 위한 줄 간격 */
 }
 
 #container {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.85); /* 흰색 배경에 투명도 적용 (85%) */
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 600px;
-    width: 90%;
+    width: 90%; /* 모바일 대응: 너비 90% */
     text-align: center;
     box-sizing: border-box;
 }
@@ -31,27 +48,30 @@ body {
     display: none !important;
 }
 
-h1 {
-    color: #2c3e50;
+h1 { /* 검사 제목 */
     font-size: 2.2em;
+    font-weight: 500; /* Medium 굵기 */
+    color: #2c3e50;
     margin-bottom: 20px;
 }
 
-h2 {
-    color: #34495e;
+h2 { /* 질문 텍스트 */
     font-size: 1.8em;
+    font-weight: 500; /* Medium 굵기 */
+    color: #34495e;
     margin-bottom: 25px;
     line-height: 1.4;
 }
 
-p {
+p { /* 일반 본문 */
     font-size: 1.1em;
     line-height: 1.6;
     margin-bottom: 20px;
+    font-weight: 400; /* Regular 굵기 */
 }
 
 button {
-    background-color: #3498db;
+    background-color: #6ab870; /* 요청하신 초록 계열 */
     color: white;
     border: none;
     padding: 15px 25px;
@@ -61,22 +81,23 @@ button {
     transition: background-color 0.3s ease;
     margin-top: 15px;
     min-width: 200px; /* 버튼 최소 너비 */
+    font-weight: 500; /* 버튼 텍스트 Medium 굵기 */
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #5aa45e; /* 호버 시 살짝 어두운 초록 */
 }
 
 #answer-buttons {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 15px; /* 버튼 사이 간격 */
+    gap: 15px;
 }
 
 .answer-button {
-    width: 100%; /* 너비를 100%로 설정 */
-    box-sizing: border-box; /* padding과 border가 width에 포함되도록 */
+    width: 100%;
+    box-sizing: border-box;
     text-align: center;
 }
 
@@ -84,26 +105,93 @@ button:hover {
     font-size: 1em;
     color: #7f8c8d;
     margin-bottom: 15px;
+    font-weight: 400; /* Regular 굵기 */
 }
 
-#result-keywords span {
-    display: inline-block;
-    background-color: #ecf0f1;
-    color: #555;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 0.9em;
-}
-
+/* 결과 페이지 스타일 */
 #result-nation-name {
-    font-size: 2em;
-    color: #27ae60;
-    margin-bottom: 10px;
+    font-size: 1.8em; /* 국가 이름 크기 줄임 */
+    font-weight: 500; /* Medium 굵기 */
+    color: #6ab870; /* 요청하신 초록 계열 */
+    margin-bottom: 5px; /* 핵심 문구와의 간격 조절 */
 }
 
 #result-nation-motto {
-    font-style: italic;
-    color: #7f8c8d;
+    font-size: 1.3em; /* 핵심 문구 크게 */
+    font-weight: 500; /* 핵심 문구 진하게 */
+    color: #34495e; /* 기존 색상 유지, 또는 변경 가능 */
     margin-bottom: 20px;
+    font-style: normal; /* 이탤릭체 제거 */
+}
+
+#result-keywords {
+    margin-bottom: 25px;
+    display: flex; /* 키워드 박스를 유연하게 배치 */
+    flex-wrap: wrap; /* 키워드가 많아지면 다음 줄로 넘어감 */
+    justify-content: center; /* 가운데 정렬 */
+    gap: 8px; /* 키워드 박스 간격 */
+}
+
+#result-keywords span {
+    background-color: #ecf0f1;
+    color: #555;
+    padding: 8px 15px; /* 패딩 증가 */
+    border-radius: 15px; /* 말랑한 네모 박스 (원형에 가깝게) */
+    font-size: 0.95em; /* 폰트 크기 조절 */
+    font-weight: 400; /* Regular 굵기 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* 그림자 추가로 입체감 */
+}
+
+#result-description {
+    text-align: justify; /* 양쪽 정렬 */
+    font-weight: 400; /* Regular 굵기 */
+    margin-bottom: 25px;
+}
+
+/* 저작권 문구 */
+#copyright {
+    font-size: 0.8em;
+    color: #7f8c8d;
+    margin-top: 30px;
+    font-weight: 400; /* Regular 굵기 */
+}
+
+/* 결과 페이지 castle.png 이미지 스타일 */
+#result-image {
+    max-width: 150px; /* 이미지 크기 조절 */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* 반응형 웹 디자인 (모바일 최적화) */
+@media (max-width: 768px) {
+    #container {
+        padding: 20px;
+        margin: 20px auto; /* 중앙 정렬 유지 */
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    p {
+        font-size: 0.95em;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    #result-nation-name {
+        font-size: 1.5em;
+    }
+
+    #result-nation-motto {
+        font-size: 1.1em;
+    }
 }
