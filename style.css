@@ -115,7 +115,7 @@ p {
 /* 현재 시각/날짜 텍스트 스타일 */
 #current-time {
     font-size: 0.95em; /* 부제와 비슷한 크기 또는 살짝 작게 */
-    color: #666; /* 연한 회색 */
+    color: #6ab870; /* 연한 회색 */
     margin-top: 15px; /* 부제와의 간격 */
     margin-bottom: 25px; /* '시작하기' 버튼과의 간격 */
     font-weight: 500; /* 조금 더 강조 */
@@ -176,7 +176,7 @@ button:active {
     /* 기존: background-color: #bbbbbb; color: #444; */
     background-color: #d8d8d8; /* #container 배경색보다 조금 더 진한 회색 */
     color: #666; /* 텍스트 색상도 조금 더 진하게 */
-    margin-top: 70px; /* 간격 조정! */
+    margin-top: 90px; /* 간격 조정! */
     font-size: 0.9em; /* 다른 버튼보다 조금 작게 */
     padding: 10px 20px; /* 패딩도 조금 작게 */
     min-width: 150px; /* 너비 조정 */
