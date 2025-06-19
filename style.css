@@ -227,7 +227,18 @@ button:hover {
     background-color: #e0b43e;
 }
 
-/* --- 여기에 새로운 스타일 추가됨 --- */
+/* --- NaCircle 챌린지 신청 버튼 스타일 --- */
+#nacircle-challenge-button {
+    background-color: #f2c94c; /* 노란색 계열 (진로 상담 버튼과 동일) */
+    color: #333; /* 검정 글씨 */
+    margin-top: 20px; /* '다시 테스트하기' 버튼과의 간격 조절 */
+    margin-bottom: 10px; /* '진로 상담 접수하기' 버튼과의 간격 조절 */
+}
+
+#nacircle-challenge-button:hover {
+    background-color: #e0b43e; /* 호버 시 살짝 어두운 노란색 */
+}
+
 /* 결과 페이지 하단 안내 문구 스타일 */
 #disclaimer-text {
     font-size: 0.75em; /* 아주 작게 */
@@ -272,6 +283,11 @@ button:hover {
     #disclaimer-text { /* 모바일에서 글자 크기 조금 더 줄임 */
         font-size: 0.7em;
         margin-top: 10px;
+    }
+    /* --- 모바일 반응형에서 NaCircle 챌린지 버튼 스타일 추가됨 --- */
+    #nacircle-challenge-button {
+        margin-top: 15px; /* 모바일에서 간격 조정 */
+        margin-bottom: 8px;
     }
 
     button {
