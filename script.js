@@ -158,7 +158,7 @@ const resultKeywords = document.getElementById('result-keywords');
 const resultDescription = document.getElementById('result-description');
 
 // 진행바 DOM 요소
-const progressBar = document.getElementById('progress-bar'); 
+const progressBar = document.getElementById('progress-bar'); 
 
 // --- 4. 전역 변수 및 점수 초기화 ---
 let currentQuestionIndex = 0;
@@ -198,8 +198,8 @@ function loadQuestion() {
         backButton.classList.remove('hidden');
     }
 
-    // "이전 질문" 텍스트 적용 
-    backButton.textContent = "이전 질문"; 
+    // "이전 질문" 텍스트 적용 
+    backButton.textContent = "이전 질문"; 
 
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
@@ -393,24 +393,17 @@ function updateCurrentTime() {
     }
 }
 
-// --- 결과 이미지 저장하기 버튼 이벤트 리스너 ---
+// ⭐ 새로 통합된 DOMContentLoaded 리스너
 document.addEventListener('DOMContentLoaded', () => {
+    // 결과 이미지 저장하기 버튼 이벤트 리스너
     const saveResultButton = document.getElementById('save-result-button');
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            // 캡처할 요소는 #container 전체로 변경
-            const elementToCapture = document.getElementById('container'); 
-
-            // 이 부분이 문제였습니다! updateCurrentTime과 setInterval이 잘못된 위치에 있었어요.
-            // ⭐ 이 아래 두 줄은 여기 있으면 안 됩니다! ⭐
-            // updateCurrentTime(); 
-            // setInterval(updateCurrentTime, 60 * 1000); 
-
+            const elementToCapture = document.getElementById('container'); 
             html2canvas(elementToCapture, {
-                scale: 2, // 고해상도 캡처
+                scale: 2,
                 useCORS: true,
                 logging: false,
-                // 스크롤이 있는 경우를 대비하여 Y축 스크롤 위치를 0으로 설정
                 windowHeight: elementToCapture.scrollHeight,
                 y: 0
             }).then(canvas => {
@@ -427,16 +420,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    // ⭐ 이 두 줄이 document.addEventListener('DOMContentLoaded', ...) 안에 있지만,
-    //    saveResultButton.addEventListener('click', ...) 밖으로 나와야 합니다.
-    //    새로운 코드에서는 맨 아래로 빼놨어요!
-    // updateCurrentTime(); 
-    // setInterval(updateCurrentTime, 60 * 1000);
-});
 
-// ⭐ 이 두 줄을 document.addEventListener('DOMContentLoaded', ...) 함수의 마지막 부분에
-//    독립적으로 위치시켜야 합니다. 이전 코드에서 잘못된 위치에 있었어요!
-document.addEventListener('DOMContentLoaded', () => {
+    // 시계 업데이트 로직 (DOMContentLoaded 안에서 한 번 호출 후 주기적으로 호출)
     updateCurrentTime(); // 페이지 로드 시 현재 시간 한 번 업데이트
     setInterval(updateCurrentTime, 60 * 1000); // 1분(60초 * 1000밀리초)마다 시간 업데이트
 });
