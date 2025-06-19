@@ -260,8 +260,7 @@ function calculateResult() {
     else if (finalCombination === 'B1-B2-R') { resultNationKey = '대월'; }
     else {
         // 모든 조합이 일치하지 않을 경우, 기본 결과 설정 (예: 수메르 또는 오류 메시지)
-        // 여기서는 가장 보편적인 수메르로 지정하거나, 오류 메시지를 띄울 수 있습니다.
-        // 현재는 매칭되지 않으면 "결과를 찾을 수 없습니다."로 표시됩니다.
+        // 여기서는 매칭되지 않으면 "결과를 찾을 수 없습니다."로 표시됩니다.
         resultNationKey = "알 수 없음";
     }
 
