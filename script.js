@@ -174,6 +174,8 @@ consultationButton.addEventListener('click', () => {
 
 // --- 6. 함수 정의 ---
 
+// --- 6. 함수 정의 ---
+
 function startTest() {
     startPage.classList.add('hidden');
     questionPage.classList.remove('hidden');
@@ -184,7 +186,7 @@ function loadQuestion() {
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
         questionCounter.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
-        questionText.textContent = q.question;
+        questionText.innerHTML = q.question; // <-- .textContent를 .innerHTML로 변경
         answerButtons[0].textContent = q.A;
         answerButtons[1].textContent = q.B;
     } else {
