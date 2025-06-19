@@ -1,441 +1,294 @@
-/* 폰트 정의 */
-@font-face {
-    font-family: 'Paperlogy';
-    src: url('Paperlogy-4Regular.ttf') format('truetype');
-    font-weight: 400; /* Regular */
-    font-style: normal;
-}
+/* style.css 파일 전체 내용 */
 
 @font-face {
-    font-family: 'Paperlogy';
-    src: url('Paperlogy-5Medium.ttf') format('truetype');
-    font-weight: 500; /* Medium */
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Paperlogy';
-    src: url('Paperlogy-6SemiBold.ttf') format('truetype'); /* 파일명 확인 완료 */
-    font-weight: 600; /* SemiBold */
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
 body {
-    font-family: 'Paperlogy', sans-serif; /* 기본 폰트 적용 */
+    font-family: 'Pretendard-Regular', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    /* 배경 이미지 추가 */
-    background-image: url('bg.png');
-    background-size: cover; /* 배경 이미지를 화면에 꽉 채우도록 */
-    background-position: center; /* 이미지를 중앙에 배치 */
-    background-repeat: no-repeat; /* 이미지 반복 안 함 */
-    background-attachment: fixed; /* 배경 이미지를 스크롤에 고정 */
-    color: #333;
-    font-weight: 400; /* 본문 기본 굵기 Regular */
-    line-height: 1.6; /* 가독성을 위한 줄 간격 */
-    overflow-y: auto; /* 내용이 길어져도 스크롤 가능하게 */
+    overflow: hidden; /* 스크롤바 제거 */
+    background-color: #f0f2f5; /* 컨테이너 바깥 배경색 */
+}
+
+/* ⭐ 새로 추가된 배경 이미지 요소 ⭐ */
+#background-image-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('bg.png'); /* 배경 이미지 경로 */
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* 다른 요소들 뒤에 배치 */
 }
 
 #container {
-    background-color: rgba(255, 255, 255, 0.85); /* 흰색 배경에 투명도 적용 (85%) */
+    position: relative; /* 자식 요소의 absolute 위치 기준 */
+    width: 90%;
+    max-width: 450px; /* PC에서 너무 커지지 않도록 제한 */
+    background-color: rgba(255, 255, 255, 0.85); /* 흰색 배경에 투명도 적용 */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 90%; /* 모바일 대응: 너비 90% */
-    text-align: center;
     box-sizing: border-box;
-    min-height: auto; /* 캡처 시 내용물에 맞게 높이 조절 */
+    text-align: center;
+    overflow: hidden; /* 컨테이너를 넘어가는 내용 숨김 (둥근 모서리 유지) */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* 하단 저작권 문구를 아래로 보내기 위함 */
-    position: relative; /* 캡처 시 기준점 확보 */
+    justify-content: space-between; /* 내용 분산 정렬 */
+    min-height: 600px; /* 최소 높이 설정 (내용이 적어도 일정 크기 유지) */
+    max-height: 90vh; /* 화면 높이의 90%를 넘지 않도록 제한 */
+    margin: 20px 0; /* 상하 마진 추가 */
 }
 
 .page {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    flex-grow: 1; /* 컨텐츠가 중앙에 오도록 함 */
-}
-
-/* 시작 페이지에 대한 추가 스타일 (내부 요소 정렬) */
-#start-page {
-    justify-content: flex-start; /* 상단부터 요소 배치 */
-    padding-top: 50px; /* 상단 여백 추가 */
-    padding-bottom: 50px; /* 하단 여백 추가 */
+    height: 100%;
+    width: 100%;
+    padding: 20px 0; /* 페이지 내부 패딩 */
+    box-sizing: border-box;
 }
 
 .hidden {
     display: none !important;
 }
 
-h1 { /* 검사 제목 */
-    font-size: 2.2em;
-    font-weight: 600; /* Bold 굵기 적용 */
-    color: #2c3e50;
-    margin-bottom: 10px; /* 부제와의 간격 조절 */
-    line-height: 1.2; /* 제목 줄 간격 */
-}
-
-/* 부제 스타일 (시작 페이지 하위 p 태그) */
-#start-page p {
-    font-size: 1.05em; /* 글자 크기 */
-    color: #444; /* 연한 검정 */
-    margin-top: 0px; /* 제목과의 간격 */
-    margin-bottom: 30px; /* 버튼과의 간격 */
-    font-weight: 500; /* Medium 굵기 */
-    line-height: 1.4; /* 줄 간격 */
-}
-
-h2 { /* 질문 텍스트 */
+h1 {
+    color: #333;
+    margin-bottom: 30px;
     font-size: 1.8em;
-    font-weight: 600; /* Bold 굵기 적용 */
-    color: #34495e;
-    margin-bottom: 25px;
-    line-height: 1.4;
 }
 
-/* 일반 p 태그 (저작권 문구에는 적용되지 않도록 #copyright 우선순위 높임) */
+h2 {
+    color: #333;
+    font-size: 1.5em;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+h3 {
+    color: #555;
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
 p {
+    color: #666;
     font-size: 1.1em;
     line-height: 1.6;
     margin-bottom: 20px;
-    font-weight: 400; /* Regular 굵기 */
-}
-
-/* 굵게 표시되어야 할 부분 */
-#result-description strong {
-    font-weight: 600; /* Strong 태그에 Bold 굵기 적용 */
-}
-
-/* 현재 시각/날짜 텍스트 스타일 */
-#current-time {
-    font-size: 0.95em; /* 부제와 비슷한 크기 또는 살짝 작게 */
-    color: #6ab870; /* 연한 회색 */
-    margin-top: 15px; /* 부제와의 간격 */
-    margin-bottom: 25px; /* '시작하기' 버튼과의 간격 */
-    font-weight: 500; /* 조금 더 강조 */
-}
-
-/* 모바일 반응형에서 현재 시각/날짜 텍스트 스타일 */
-@media (max-width: 768px) {
-    #current-time {
-        font-size: 0.85em; /* 모바일에서 더 작게 */
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
 }
 
 button {
-    background-color: #6ab870; /* 초록 계열 */
+    background-color: #4CAF50;
     color: white;
-    border: none;
     padding: 15px 25px;
+    border: none;
     border-radius: 8px;
     font-size: 1.1em;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.1s ease; /* 호버 및 클릭 애니메이션 추가 */
+    transition: background-color 0.3s ease;
     margin-top: 15px;
-    min-width: 200px; /* 버튼 최소 너비 */
-    font-weight: 500; /* 버튼 텍스트 Medium 굵기 */
-    font-family: 'Paperlogy', sans-serif; /* 폰트 적용 */
-    white-space: normal; /* 텍스트가 넘치면 자동으로 줄 바꿈 */
-    line-height: 1.4;    /* 줄 간격 조정 */
-    text-align: center;  /* 여러 줄일 경우 텍스트를 가운데 정렬 */
+    width: 80%; /* 버튼 너비 조정 */
+    max-width: 300px;
 }
 
 button:hover {
-    background-color: #5aa45e; /* 호버 시 살짝 어두운 초록 */
+    background-color: #45a049;
 }
 
-/* 버튼 클릭 시 말랑한 느낌 */
-button:active {
-    transform: scale(0.98); /* 클릭 시 98%로 살짝 축소 (말랑한 느낌) */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자도 살짝 줄어드는 느낌 */
+/* 시작 버튼 */
+#start-button {
+    background-color: #007bff;
 }
 
-#answer-buttons {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 15px;
+#start-button:hover {
+    background-color: #0056b3;
 }
 
-.answer-button {
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
+/* 답변 버튼 */
+#answer-buttons button { /* 부모 ID를 포함하여 명확성 추가 */
+    background-color: #6c757d;
+    margin: 10px 0;
 }
 
-/* 뒤로 가기 버튼 스타일 */
-#back-button {
-    /* 기존: background-color: #bbbbbb; color: #444; */
-    background-color: #d8d8d8; /* #container 배경색보다 조금 더 진한 회색 */
-    color: #666; /* 텍스트 색상도 조금 더 진하게 */
-    margin-top: 90px; /* 간격 조정! */
-    font-size: 0.9em; /* 다른 버튼보다 조금 작게 */
-    padding: 10px 20px; /* 패딩도 조금 작게 */
-    min-width: 150px; /* 너비 조정 */
+#answer-buttons button:hover {
+    background-color: #5a6268;
 }
 
-#back-button:hover {
-    background-color: #c0c0c0; /* 호버 시 살짝 어두운 회색 */
+/* 결과 페이지 버튼 */
+.result-actions button { /* 이 클래스는 현재 HTML에 없지만, 추후 사용될 수 있어 남겨둡니다. */
+    background-color: #28a745;
+    margin: 10px 5px; /* 버튼 간격 조정 */
 }
 
-#back-button:active {
-    transform: scale(0.97); /* 클릭 시 살짝 더 축소 */
+.result-actions button:hover {
+    background-color: #218838;
 }
 
-
-#question-counter {
-    font-size: 1em;
-    color: #7f8c8d;
-    margin-bottom: 15px;
-    font-weight: 400; /* Regular 굵기 */
-}
-
-/* 진행바 컨테이너 스타일 */
-#progress-bar-container {
-    width: 80%; /* 컨테이너 너비 */
-    background-color: #e0e0e0; /* 진행바 배경색 (회색) */
-    border-radius: 5px;
-    height: 8px; /* 진행바 높이 */
-    margin-top: 10px; /* 질문 카운터와의 간격 */
-    margin-bottom: 25px; /* 질문 텍스트와의 간격 */
-    overflow: hidden; /* 진행바가 컨테이너 밖으로 나가지 않도록 */
-}
-
-/* 실제 진행바 스타일 */
-#progress-bar {
-    height: 100%;
-    width: 0%; /* 초기 너비는 0% */
-    background-color: #6ab870; /* 진행 색상 (초록색 계열) */
-    border-radius: 5px;
-    transition: width 0.3s ease-in-out; /* 너비 변경 시 부드러운 애니메이션 */
-}
-
-
-/* 결과 페이지 스타일 */
-#result-nation-name {
-    font-size: 1.8em;
-    font-weight: 600; /* Bold 굵기 적용 */
-    color: #6ab870; /* 초록 계열 */
-    margin-bottom: 2px; /* 국가 정보와의 간격 조절 */
-}
-
-#result-nation-info {
-    font-size: 0.9em; /* 연한 회색 느낌 */
-    color: #7f8c8d;
-    margin-bottom: 10px; /* 핵심 문구와의 간격 조절 */
-    font-weight: 400; /* Regular 굵기 */
-}
-
-#result-nation-motto {
-    font-size: 1.3em;
-    font-weight: 600; /* Bold 굵기 적용 */
-    color: #34495e;
-    margin-bottom: 20px;
-    font-style: normal;
-}
-
-#result-keywords {
-    margin-bottom: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-}
-
-#result-keywords span {
-    background-color: rgba(242, 201, 76, 0.7); /* 투명한 노란색 */
-    color: #333; /* 키워드 텍스트 색상 변경 (가독성 확보) */
-    padding: 8px 12px; /* 좌우 패딩 줄임 */
-    border-radius: 15px;
-    font-size: 0.85em; /* 글씨 크기 줄임 */
-    font-weight: 400;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-}
-
-#result-description {
-    text-align: justify;
-    font-weight: 400;
-    margin-bottom: 25px;
-}
-
-/* 저작권 문구 - 최종 최종 수정! !important 추가! */
-#copyright {
-    font-size: 0.8em !important; /* 글자 크기 아주 작게, !important로 강제 적용 */
-    color: #7f8c8d !important; /* 연한 회색, !important로 강제 적용 */
-    margin-top: 35px !important; /* 시작하기 버튼과의 간격을 더 벌림, !important로 강제 적용 */
-    margin-bottom: 0px !important; /* 컨테이너 바닥에 붙도록 여백 제거 */
-    font-weight: 400 !important;
-    line-height: 1.4 !important; /* 줄 간격 */
-}
-
-/* 결과 페이지 castle.png 이미지 스타일 */
-#result-image {
-    max-width: 150px;
-    height: auto;
-    margin-bottom: 10px; /* 이미지와 국가명 사이 간격 줄임 */
-}
-
-/* 추가 버튼 스타일 (진로 상담 접수하기) */
-#consultation-button {
-    background-color: #f2c94c;
-    margin-top: 10px;
-    color: #333;
-}
-#consultation-button:hover {
-    background-color: #e0b43e;
-}
-
-/* --- NaCircle 챌린지 신청 버튼 스타일 --- */
+/* NACircle 챌린지 버튼 색상 */
 #nacircle-challenge-button {
-    background-color: #f2c94c; /* 노란색 계열 (진로 상담 버튼과 동일) */
-    color: white; /* 검정 글씨 */
-    margin-top: 20px; /* '다시 테스트하기' 버튼과의 간격 조절 */
-    margin-bottom: 10px; /* '진로 상담 접수하기' 버튼과의 간격 조절 */
+    background-color: #7952b3; /* 보라색 계열 */
+    margin-top: 10px;
 }
 
 #nacircle-challenge-button:hover {
-    background-color: #e0b43e; /* 호버 시 살짝 어두운 노란색 */
+    background-color: #6610f2;
 }
 
-/* --- 결과 이미지 저장하기 버튼 스타일 --- */
-#save-result-button {
-    background-color: #4a6fa5; /* 설정하신 파란색 계열 */
-    color: white;
-    margin-top: 10px; /* 위 버튼과의 간격 */
-    margin-bottom: 20px; /* 하단 여백 */
+/* 키워드 스타일 */
+#result-keywords { /* ID 선택자 사용 */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px; /* 키워드 간 간격 */
 }
 
-#save-result-button:hover {
-    background-color: #436399; /* 요청하신 호버 색상 */
+#result-keywords span { /* ID 선택자 사용 */
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
 }
 
-/* 결과 페이지 하단 안내 문구 스타일 */
-#disclaimer-text {
-    font-size: 0.75em; /* 아주 작게 */
-    color: #a0a0a0; /* 아주 연한 회색 */
-    margin-top: 15px; /* 버튼과의 위쪽 간격 */
-    margin-bottom: 5px; /* 다시 테스트하기 버튼과의 아래쪽 간격 */
-    line-height: 1.3;
-    font-weight: 400; /* Regular 굵기 */
+/* 진행바 스타일 */
+#progress-bar-container { /* ID 선택자 사용 */
+    width: 90%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 20px;
+    overflow: hidden; /* 진행바 모서리 둥글게 */
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #007bff;
+    border-radius: 10px;
+    transition: width 0.4s ease-in-out;
+}
+
+/* 질문 카운터 */
+#question-counter {
+    font-size: 1em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* 이전 질문 버튼 Wrapper */
+#back-button-wrapper { /* ⭐ 새로 추가된 래퍼의 스타일 ⭐ */
+    position: absolute; /* container를 기준으로 위치 */
+    bottom: 20px; /* 맨 아래 시간과 겹치지 않도록 조정 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 300px;
     text-align: center;
 }
 
-/* 결과 페이지 저작권 문구 스타일 */
-#result-copyright {
-    font-size: 0.7em !important; /* 글자 크기를 아주 작게 */
-    color: #a0a0a0 !important; /* 연한 회색으로 변경 */
-    margin-top: 15px !important; /* 위쪽 여백 */
-    margin-bottom: 0px !important; /* 아래쪽 여백 제거 */
-    line-height: 1.3 !important;
-    font-weight: 400 !important;
-    text-align: center !important;
+#back-button {
+    background-color: #dc3545; /* 빨간색 계열 */
+    position: relative; /* 래퍼 안에서 위치 조정을 위해 */
+    top: -90px; /* ⭐ 이전 질문 버튼 위치를 90px 위로 올림 (원하는 대로 아래로 내린 효과) ⭐ */
 }
 
-/* 반응형 웹 디자인 (모바일 최적화) */
+#back-button:hover {
+    background-color: #c82333;
+}
+
+/* 현재 시간 스타일 */
+#current-time, #current-time-result { /* 결과 페이지 시간 요소도 추가 */
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #6ab870; /* ⭐ 요청하신 색상으로 변경 ⭐ */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* 가독성을 위해 그림자 유지 */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+/* 저작권 텍스트 */
+#copyright, #result-copyright {
+    font-size: 0.75em;
+    color: #888;
+    margin-top: 20px;
+    line-height: 1.4;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    padding: 0 10px; /* 너무 넓지 않게 패딩 추가 */
+    box-sizing: border-box;
+}
+
+/* 결과 페이지 저작권은 시간을 피해 조금 위로 */
+#result-copyright {
+    bottom: 50px; /* 시간 요소 위에 위치하도록 조정 */
+}
+
+/* 면책 조항 텍스트 */
+#disclaimer-text {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+
+/* 모바일 화면에 대한 반응형 디자인 */
 @media (max-width: 768px) {
     #container {
         padding: 20px;
-        margin: 20px auto;
-        min-height: 500px; /* 모바일에서도 최소 높이 유지 */
+        min-height: 500px;
     }
 
     h1 {
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
 
     h2 {
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
 
-    /* 일반 p 태그와 저작권 p 태그가 겹치지 않도록 주의 */
-    p { /* 일반 본문용 p */
+    p {
         font-size: 0.95em;
     }
-    /* 모바일 저작권 문구 - !important 추가 */
-    #copyright {
-        font-size: 0.75em !important; /* 모바일에서 더 작게, !important로 강제 적용 */
-        margin-top: 25px !important; /* 모바일에서 간격 조정, !important로 강제 적용 */
-    }
-    #start-page p { /* 부제 p도 모바일에서 별도 조절 */
-        font-size: 0.95em;
-    }
-    /* --- 모바일 반응형에서 새로운 스타일 추가됨 --- */
-    #disclaimer-text { /* 모바일에서 글자 크기 조금 더 줄임 */
-        font-size: 0.7em;
-        margin-top: 10px;
-    }
-    /* --- 모바일 반응형에서 NaCircle 챌린지 버튼 스타일 추가됨 --- */
-    #nacircle-challenge-button {
-        margin-top: 15px; /* 모바일에서 간격 조정 */
-        margin-bottom: 8px;
-    }
-    /* --- 모바일 반응형에서 결과 이미지 저장하기 버튼 스타일 추가됨 --- */
-    #save-result-button {
-        margin-top: 10px; /* 모바일에서 간격 조정 */
-        margin-bottom: 15px; /* 모바일에서 하단 여백 */
-    }
-    /* 모바일 환경에서 결과 페이지 저작권 문구 스타일 */
-    #result-copyright {
-        font-size: 0.65em !important; /* 모바일에서 더 작게 */
-        margin-top: 10px !important;
-    }
-
 
     button {
         padding: 12px 20px;
         font-size: 1em;
     }
 
-    /* 모바일에서 뒤로 가기 버튼 크기 조정 */
+    /* 모바일에서 버튼 간격 및 위치 미세 조정 */
     #back-button {
-        padding: 8px 15px;
-        font-size: 0.85em;
-        min-width: 120px;
-        margin-top: 30px; /* 모바일에서도 간격 유지 */
+        top: -80px; /* 모바일에서 조금 더 위로 */
     }
 
-    #result-nation-name {
-        font-size: 1.5em;
-    }
-
-    #result-nation-motto {
-        font-size: 1.1em;
-    }
-
-    #result-keywords span {
+    #current-time, #current-time-result, #copyright, #result-copyright {
         font-size: 0.8em;
-        padding: 6px 10px;
     }
-}
-
-/* --- 시작 페이지 애니메이션 --- */
-@keyframes fadeInSlideUp {
-    0% {
-        opacity: 0; /* 시작 시 투명 */
-        transform: translateY(20px); /* 시작 시 20px 아래에 위치 */
-    }
-    100% {
-        opacity: 1; /* 끝날 시 불투명 */
-        transform: translateY(0); /* 끝날 시 원래 위치로 */
-    }
-}
-
-#start-page h1 {
-    /* 기존 h1 스타일 유지하면서 애니메이션 추가 */
-    animation: fadeInSlideUp 1s ease-out forwards; /* 1초 동안 부드럽게, 애니메이션 완료 후 상태 유지 */
-}
-
-#start-page p {
-    /* 기존 #start-page p 스타일 유지하면서 애니메이션 추가 */
-    animation: fadeInSlideUp 1s ease-out forwards; /* 1초 동안 부드럽게 */
-    animation-delay: 0.5s; /* 0.5초 뒤에 애니메이션 시작 */
-    opacity: 0; /* 애니메이션 시작 전에는 투명하게 숨김 */
 }
