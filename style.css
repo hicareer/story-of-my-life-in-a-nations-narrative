@@ -37,6 +37,9 @@ body {
     font-weight: 400; /* 본문 기본 굵기 Regular */
     line-height: 1.6; /* 가독성을 위한 줄 간격 */
     overflow-y: auto; /* 내용이 길어져도 스크롤 가능하게 */
+    
+    /* 캡처 시 불필요한 스크롤 방지를 위한 속성 (JavaScript에서 제어) */
+    /* overflow: hidden; (-> 이건 JS에서 임시로 적용할 예정입니다) */
 }
 
 #container {
@@ -48,10 +51,12 @@ body {
     width: 90%; /* 모바일 대응: 너비 90% */
     text-align: center;
     box-sizing: border-box;
-    min-height: 600px; /* 모든 페이지에 적용될 최소 높이 */
+    /* min-height: 600px; /* 이 부분을 잠시 주석 처리하거나, 캡처에 맞게 조정해볼게요 */ */
+    min-height: auto; /* 캡처 시 내용물에 맞게 높이 조절 */
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* 하단 저작권 문구를 아래로 보내기 위함 */
+    position: relative; /* 캡처 시 기준점 확보 */
 }
 
 .page {
@@ -230,7 +235,7 @@ button:hover {
 /* --- NaCircle 챌린지 신청 버튼 스타일 --- */
 #nacircle-challenge-button {
     background-color: #f2c94c; /* 노란색 계열 (진로 상담 버튼과 동일) */
-    color: #333; /* 검정 글씨 */
+    color: white; /* 검정 글씨 */
     margin-top: 20px; /* '다시 테스트하기' 버튼과의 간격 조절 */
     margin-bottom: 10px; /* '진로 상담 접수하기' 버튼과의 간격 조절 */
 }
@@ -241,8 +246,8 @@ button:hover {
 
 /* --- 결과 이미지 저장하기 버튼 스타일 --- */
 #save-result-button {
-    background-color: #5cb85c; /* 조금 더 진한 초록색 */
-    color: white;
+    background-color: #f9f9f9; /* 조금 더 진한 초록색 */
+    color: #333;
     margin-top: 10px; /* 위 버튼과의 간격 */
     margin-bottom: 20px; /* 하단 여백 */
 }
@@ -268,7 +273,7 @@ button:hover {
     #container {
         padding: 20px;
         margin: 20px auto;
-        min-height: 500px;
+        min-height: 500px; /* 모바일에서도 최소 높이 유지 */
     }
 
     h1 {
