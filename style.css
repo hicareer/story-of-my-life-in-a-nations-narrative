@@ -363,3 +363,27 @@ button:hover {
         padding: 6px 10px;
     }
 }
+
+/* --- 시작 페이지 애니메이션 --- */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0; /* 시작 시 투명 */
+        transform: translateY(20px); /* 시작 시 20px 아래에 위치 */
+    }
+    100% {
+        opacity: 1; /* 끝날 시 불투명 */
+        transform: translateY(0); /* 끝날 시 원래 위치로 */
+    }
+}
+
+#start-page h1 {
+    /* 기존 h1 스타일 유지하면서 애니메이션 추가 */
+    animation: fadeInSlideUp 1s ease-out forwards; /* 1초 동안 부드럽게, 애니메이션 완료 후 상태 유지 */
+}
+
+#start-page p {
+    /* 기존 #start-page p 스타일 유지하면서 애니메이션 추가 */
+    animation: fadeInSlideUp 1s ease-out forwards; /* 1초 동안 부드럽게 */
+    animation-delay: 0.5s; /* 0.5초 뒤에 애니메이션 시작 */
+    opacity: 0; /* 애니메이션 시작 전에는 투명하게 숨김 */
+}
