@@ -69,70 +69,70 @@ const results = {
         continent: "아시아",
         motto: "문명의 씨앗을 뿌리는 선구자",
         keywords: ["창조", "결정", "혁신", "기록", "시스템", "개척"],
-        description: "인류 최초의 문명인 수메르가 쐐기 문자, 도시, 법전 등 혁신적인 시스템을 창조하며 문명의 기틀을 다졌듯이, 당신은 <strong>새로운 시작을 두려워하지 않는 개척자</strong>입니다. 견고한 의지와 논리적인 사고로 세상에 없던 길을 만들고, 탁월한 추진력으로 복잡한 문제 속에서 자신만의 해결책을 찾아냅니다. 당신의 삶은 익숙한 길을 따르기보다 <strong>새로운 가능성을 탐색하고, 혁신적인 아이디어로 주변에 영감</strong>을 줍니다. 때로는 고독할 수 있지만, 당신이 놓는 한 걸음 한 걸음이 미래의 견고한 기반이 됩니다."
+        description: "인류 최초의 문명인 수메르가 쐐기 문자, 도시, 법전 등 혁신적인 시스템을 창조하며 문명의 기틀을 다졌듯이, 당신은 **새로운 시작을 두려워하지 않는 개척자**입니다. 견고한 의지와 논리적인 사고로 세상에 없던 길을 만들고, 탁월한 추진력으로 복잡한 문제 속에서 자신만의 해결책을 찾아냅니다. 당신의 삶은 익숙한 길을 따르기보다 **새로운 가능성을 탐색하고, 혁신적인 아이디어로 주변에 영감**을 줍니다. 때로는 고독할 수 있지만, 당신이 놓는 한 걸음 한 걸음이 미래의 견고한 기반이 됩니다."
     },
     "아케메네스 페르시아 제국": {
         period: "BC 550년 ~ BC 330년 경",
         continent: "아시아",
         motto: "다양성을 품고 조화를 이루는 리더",
         keywords: ["관용", "통합", "제국", "다양성", "조화", "소통"],
-        description: "고대 세계 최대의 제국이었던 아케메네스 페르시아가 광대한 영토 안의 다양한 문화를 존중하고 포용하며 통합적인 행정 체계를 구축했듯이, 당신은 <strong>다름을 인정하고 그것을 하나로 아우르는 데 탁월한 능력</strong>을 지녔습니다. 넓은 시야와 유연한 사고로 여러 사람의 의견을 경청하고, 각자의 강점을 끌어내어 <strong>하나의 거대한 목표를 향해 나아갑니다.</strong> 당신의 관용적인 태도와 균형 잡힌 리더십은 갈등을 해소하고, 모두가 함께 번영할 수 있는 길을 제시합니다. 당신의 삶은 조화와 소통의 연속입니다."
+        description: "고대 세계 최대의 제국이었던 아케메네스 페르시아가 광대한 영토 안의 다양한 문화를 존중하고 포용하며 통합적인 행정 체계를 구축했듯이, 당신은 **다름을 인정하고 그것을 하나로 아우르는 데 탁월한 능력**을 지녔습니다. 넓은 시야와 유연한 사고로 여러 사람의 의견을 경청하고, 각자의 강점을 끌어내어 **하나의 거대한 목표를 향해 나아갑니다.** 당신의 관용적인 태도와 균형 잡힌 리더십은 갈등을 해소하고, 모두가 함께 번영할 수 있는 길을 제시합니다. 당신의 삶은 조화와 소통의 연속입니다."
     },
     "카르타고": {
         period: "BC 814년 ~ BC 146년 경",
         continent: "아프리카",
         motto: "바다를 건너 기회를 잡는 실용주의자",
         keywords: ["상업", "해상", "교역", "실용", "개척", "독립"],
-        description: "지중해 무역을 장악하며 번성했던 해상 강국 카르타고처럼, 당신은 <strong>본능적으로 기회를 포착하고, 현실적인 방법으로 목표를 달성하는 데 능숙</strong>합니다. 유연한 사고와 과감한 실행력으로 익숙한 것을 벗어나 <strong>새로운 영역에서 자신만의 가치를 창출</strong>합니다. 때로는 냉철한 판단이 필요하지만, 당신은 언제나 실리를 추구하며 독립적인 방식으로 삶을 개척해나가는 진정한 <strong>실전형 개척자</strong>입니다. 변화에 빠르게 적응하고 전략적으로 대응하는 당신의 능력은 당신의 삶을 역동적으로 만듭니다."
+        description: "지중해 무역을 장악하며 번성했던 해상 강국 카르타고처럼, 당신은 **본능적으로 기회를 포착하고, 현실적인 방법으로 목표를 달성하는 데 능숙**합니다. 유연한 사고와 과감한 실행력으로 익숙한 것을 벗어나 **새로운 영역에서 자신만의 가치를 창출**합니다. 때로는 냉철한 판단이 필요하지만, 당신은 언제나 실리를 추구하며 독립적인 방식으로 삶을 개척해나가는 진정한 **실전형 개척자**입니다. 변화에 빠르게 적응하고 전략적으로 대응하는 당신의 능력은 당신의 삶을 역동적으로 만듭니다."
     },
     "잉카 제국": {
         period: "1438년 ~ 1533년 경",
         continent: "남아메리카",
         motto: "견고한 연결로 공동체를 이끄는 설계자",
         keywords: ["조직력", "공동체", "연결", "견고함", "적응", "통제"],
-        description: "험준한 안데스 산맥에 거대한 제국을 건설하고 효율적인 공동체 기반의 통치 시스템을 확립했던 잉카 제국처럼, 당신은 <strong>단단한 신뢰를 기반으로 사람들을 조직하고 연결하는 데 탁월한 재능</strong>이 있습니다. 치밀한 계획과 강한 리더십으로 목표를 향해 나아가며, 주변 사람들을 결속시켜 함께 목표를 달성하는 데 큰 보람을 느낍니다. 때로는 융통성이 부족하다는 말을 들을 수 있지만, 당신은 모두가 믿고 따를 수 있는 <strong>확실한 기반과 질서</strong>를 만들어내는 사람입니다."
+        description: "험준한 안데스 산맥에 거대한 제국을 건설하고 효율적인 공동체 기반의 통치 시스템을 확립했던 잉카 제국처럼, 당신은 **단단한 신뢰를 기반으로 사람들을 조직하고 연결하는 데 탁월한 재능**이 있습니다. 치밀한 계획과 강한 리더십으로 목표를 향해 나아가며, 주변 사람들을 결속시켜 함께 목표를 달성하는 데 큰 보람을 느낍니다. 때로는 융통성이 부족하다는 말을 들을 수 있지만, 당신은 모두가 믿고 따를 수 있는 **확실한 기반과 질서**를 만들어내는 사람입니다."
     },
     "비잔티움 제국": {
         period: "330년 ~ 1453년 경",
         continent: "유럽",
         motto: "천 년을 지탱하는 불굴의 계승자",
         keywords: ["계승", "유지", "회복", "지성", "보존", "방어"],
-        description: "고대 로마의 유산을 계승하고 동서양 문명의 교차점에서 독자적인 문화를 발전시키며 천 년 이상을 존속했던 비잔티움 제국처럼, 당신은 <strong>오랜 시간 동안 묵묵히 자신의 가치를 지키고 발전시키는 강한 내면</strong>을 가졌습니다. 견고한 기반 위에서 내면의 가치와 지성을 지키고, 외부의 위협 속에서도 끈질긴 회복력으로 자신을 재건해나갑니다. 당신의 삶은 급변하는 세상에서도 <strong>변치 않는 본질을 지키고, 그것을 바탕으로 지속적인 영향력</strong>을 발휘하는 과정입니다."
+        description: "고대 로마의 유산을 계승하고 동서양 문명의 교차점에서 독자적인 문화를 발전시키며 천 년 이상을 존속했던 비잔티움 제국처럼, 당신은 **오랜 시간 동안 묵묵히 자신의 가치를 지키고 발전시키는 강한 내면**을 가졌습니다. 견고한 기반 위에서 내면의 가치와 지성을 지키고, 외부의 위협 속에서도 끈질긴 회복력으로 자신을 재건해나갑니다. 당신의 삶은 급변하는 세상에서도 **변치 않는 본질을 지키고, 그것을 바탕으로 지속적인 영향력**을 발휘하는 과정입니다."
     },
     "알 안달루스": {
         period: "711년 ~ 1492년 경",
         continent: "유럽",
         motto: "경계를 넘어선 지식과 예술의 연금술사",
         keywords: ["융합", "관용", "지식", "예술", "공존", "다양성"],
-        description: "이베리아 반도에서 이슬람과 유럽 문화가 만나 학문과 예술의 황금기를 이뤘던 알 안달루스처럼, 당신은 <strong>서로 다른 것들을 기꺼이 받아들이고, 그 안에서 새로운 아름다움과 지혜를 발견</strong>하는 사람입니다. 유연하고 개방적인 마음으로 다양한 생각과 관점을 융합하여 독창적인 결과물을 만들어내죠. 당신의 삶은 편협하지 않으며, <strong>열린 마음으로 세상을 탐험하고 그 속에서 진정한 균형</strong>을 찾아가는 지혜로운 여정입니다."
+        description: "이베리아 반도에서 이슬람과 유럽 문화가 만나 학문과 예술의 황금기를 이뤘던 알 안달루스처럼, 당신은 **서로 다른 것들을 기꺼이 받아들이고, 그 안에서 새로운 아름다움과 지혜를 발견**하는 사람입니다. 유연하고 개방적인 마음으로 다양한 생각과 관점을 융합하여 독창적인 결과물을 만들어내죠. 당신의 삶은 편협하지 않으며, **열린 마음으로 세상을 탐험하고 그 속에서 진정한 균형**을 찾아가는 지혜로운 여정입니다."
     },
     "아즈텍 제국": {
         period: "1428년 ~ 1521년 경",
         continent: "북아메리카",
         motto: "굳건한 신념으로 번영을 일구는 개척 공동체",
         keywords: ["신념", "공동체", "번영", "헌신", "상징", "집약"],
-        description: "멕시코 고원에 테노치티틀란이라는 웅장한 도시를 건설하며 번성했던 아즈텍 제국처럼, 당신은 <strong>강력한 신념과 헌신적인 태도로 주변 사람들을 결속시키는 힘</strong>을 가졌습니다. 견고한 기반 위에 깊은 내면의 가치를 세우고, 자신이 옳다고 믿는 것을 위해 기꺼이 헌신하며 그 에너지를 주변에 전달합니다. 당신의 삶은 단순히 개인적인 성공을 넘어, <strong>공동체의 번영을 위해 기여하고, 상징적인 존재</strong>로 자리매김하는 숭고한 과정입니다."
+        description: "멕시코 고원에 테노치티틀란이라는 웅장한 도시를 건설하며 번성했던 아즈텍 제국처럼, 당신은 **강력한 신념과 헌신적인 태도로 주변 사람들을 결속시키는 힘**을 가졌습니다. 견고한 기반 위에 깊은 내면의 가치를 세우고, 자신이 옳다고 믿는 것을 위해 기꺼이 헌신하며 그 에너지를 주변에 전달합니다. 당신의 삶은 단순히 개인적인 성공을 넘어, **공동체의 번영을 위해 기여하고, 상징적인 존재**로 자리매김하는 숭고한 과정입니다."
     },
     "발해": {
         period: "698년 ~ 926년 경",
         continent: "아시아",
         motto: "웅장한 기상으로 새로운 시대를 여는 계승자",
         keywords: ["부흥", "계승", "자주", "북방", "광활", "다원성"],
-        description: "고구려의 기상을 이어받아 '해동성국'이라 불리며 만주와 한반도 북부에 강력한 국력을 자랑했던 발해처럼, 당신은 <strong>과거의 유산을 소중히 여기면서도, 자신만의 방식으로 새로운 시대를 개척</strong>하려는 강한 의지를 가졌습니다. 견고한 기반 위에서 드넓은 영역을 향해 나아가며, 어려움 속에서도 정신적 계승을 통해 끈기 있게 목표를 이뤄냅니다. 넓은 시야와 포용력으로 <strong>다양한 문화를 아우르며, 자신만의 웅장한 서사</strong>를 써내려가는 사람입니다."
+        description: "고구려의 기상을 이어받아 '해동성국'이라 불리며 만주와 한반도 북부에 강력한 국력을 자랑했던 발해처럼, 당신은 **과거의 유산을 소중히 여기면서도, 자신만의 방식으로 새로운 시대를 개척**하려는 강한 의지를 가졌습니다. 견고한 기반 위에서 드넓은 영역을 향해 나아가며, 어려움 속에서도 정신적 계승을 통해 끈기 있게 목표를 이뤄냅니다. 넓은 시야와 포용력으로 **다양한 문화를 아우르며, 자신만의 웅장한 서사**를 써내려가는 사람입니다."
     },
     "대월": {
         period: "968년 ~ 1802년 경 (리 왕조, 쩐 왕조, 후 레 왕조 등)",
         continent: "아시아",
         motto: "수많은 역경 속에서도 굳건히 일어서는 독립가",
         keywords: ["저항", "독립", "민족", "회복", "끈기", "자립"],
-        description: "천 년에 걸친 외세의 지배를 극복하고 독립을 쟁취하며 독자적인 문화를 지켜왔던 베트남의 왕조, 대월처럼, 당신은 <strong>어떤 어려움 속에서도 자신을 지키고 다시 일어서는 불굴의 회복력</strong>을 지녔습니다. 유연하게 외부의 압력에 대응하면서도 민족의 내실과 정신을 굳건히 지켜냅니다. 당신의 삶은 <strong>외부의 영향에 흔들리지 않고, 스스로의 힘으로 자신만의 가치를 증명</strong>해내는 강인한 자립의 서사입니다."
+        description: "천 년에 걸친 외세의 지배를 극복하고 독립을 쟁취하며 독자적인 문화를 지켜왔던 베트남의 왕조, 대월처럼, 당신은 **어떤 어려움 속에서도 자신을 지키고 다시 일어서는 불굴의 회복력**을 지녔습니다. 유연하게 외부의 압력에 대응하면서도 민족의 내실과 정신을 굳건히 지켜냅니다. 당신의 삶은 **외부의 영향에 흔들리지 않고, 스스로의 힘으로 자신만의 가치를 증명**해내는 강인한 자립의 서사입니다."
     },
     "베네치아 공화국": {
         period: "697년 ~ 1797년 경",
         continent: "유럽",
         motto: "현명한 중립으로 번영을 창조하는 외교가",
         keywords: ["무역", "번영", "중립", "실리", "해양", "외교"],
-        description: "바다 위에 세워져 천 년 이상 독립을 유지하며 유럽과 동양을 잇는 해상 무역으로 번성했던 베네치아 공화국처럼, 당신은 <strong>복잡한 관계 속에서 자신만의 실리를 현명하게 추구</strong>하고, 주변과의 <strong>균형을 통해 번영을 일구어내는 데 능숙</strong>합니다. 유연한 사고와 균형 잡힌 시각으로 현명한 해결책을 찾으며, 당신의 뛰어난 외교적 감각은 갈등을 피하고 평화로운 방식으로 가장 큰 이익을 만들어냅니다. 당신의 삶은 <strong>지혜로운 협상과 실용적인 전략으로 가득한 여정</strong>입니다."
+        description: "바다 위에 세워져 천 년 이상 독립을 유지하며 유럽과 동양을 잇는 해상 무역으로 번성했던 베네치아 공화국처럼, 당신은 **복잡한 관계 속에서 자신만의 실리를 현명하게 추구**하고, 주변과의 **균형을 통해 번영을 일구어내는 데 능숙**합니다. 유연한 사고와 균형 잡힌 시각으로 현명한 해결책을 찾으며, 당신의 뛰어난 외교적 감각은 갈등을 피하고 평화로운 방식으로 가장 큰 이익을 만들어냅니다. 당신의 삶은 **지혜로운 협상과 실용적인 전략으로 가득한 여정**입니다."
     }
 };
 
@@ -146,10 +146,9 @@ const questionCounter = document.getElementById('question-counter');
 const questionText = document.getElementById('question-text');
 const answerButtons = document.querySelectorAll('.answer-button');
 const restartButton = document.getElementById('restart-button');
-// const consultationButton = document.getElementById('consultation-button'); // HTML에는 없지만, 혹시 모를 경우를 대비해 DOM 요소로 가져옴
 const saveResultButton = document.getElementById('save-result-button');
-const backButton = document.getElementById('back-button'); // 뒤로 가기 버튼 DOM 요소 추가
-const currentTimeElement = document.getElementById('current-time'); // 추가됨
+const backButton = document.getElementById('back-button');
+const currentTimeElement = document.getElementById('current-time');
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationInfo = document.getElementById('result-nation-info');
@@ -157,8 +156,7 @@ const resultNationMotto = document.getElementById('result-nation-motto');
 const resultKeywords = document.getElementById('result-keywords');
 const resultDescription = document.getElementById('result-description');
 
-// 진행바 DOM 요소
-const progressBar = document.getElementById('progress-bar'); 
+const progressBar = document.getElementById('progress-bar');
 
 // --- 4. 전역 변수 및 점수 초기화 ---
 let currentQuestionIndex = 0;
@@ -167,7 +165,6 @@ let scores = {
     I: 0, D: 0,
     P: 0, R: 0
 };
-// 사용자의 답변을 저장할 배열 (뒤로 가기 기능에 사용)
 let userAnswers = [];
 
 // --- 5. 이벤트 리스너 ---
@@ -176,30 +173,27 @@ answerButtons.forEach(button => {
     button.addEventListener('click', (event) => selectAnswer(event.target.dataset.answerType));
 });
 restartButton.addEventListener('click', resetTest);
-backButton.addEventListener('click', goBack); // 뒤로 가기 버튼 이벤트 리스너 추가
-
+backButton.addEventListener('click', goBack);
 
 // --- 6. 함수 정의 ---
 
 function startTest() {
     startPage.classList.add('hidden');
     questionPage.classList.remove('hidden');
-    currentQuestionIndex = 0; // 시작 시 인덱스 초기화
-    userAnswers = []; // 시작 시 답변 배열 초기화
-    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 }; // 시작 시 점수 초기화
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
     loadQuestion();
 }
 
 function loadQuestion() {
-    // 첫 질문일 경우 뒤로 가기 버튼 숨김, 아니면 보임
     if (currentQuestionIndex === 0) {
         backButton.classList.add('hidden');
     } else {
         backButton.classList.remove('hidden');
     }
 
-    // "이전 질문" 텍스트 적용 
-    backButton.textContent = "이전 질문"; 
+    backButton.textContent = "이전 질문";
 
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
@@ -208,7 +202,6 @@ function loadQuestion() {
         answerButtons[0].textContent = q.A;
         answerButtons[1].textContent = q.B;
 
-        // 진행바 업데이트 로직
         const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
         progressBar.style.width = `${progress}%`;
     } else {
@@ -217,24 +210,20 @@ function loadQuestion() {
 }
 
 function selectAnswer(answerType) {
-    userAnswers[currentQuestionIndex] = answerType; // 현재 질문의 답변 저장
+    userAnswers[currentQuestionIndex] = answerType;
 
     currentQuestionIndex++;
-    calculateScoresFromAnswers(); // 답변 저장 후 점수 재계산
-    loadQuestion(); // 다음 질문 로드 또는 결과 계산
+    calculateScoresFromAnswers();
+    loadQuestion();
 }
 
-// userAnswers 배열을 기반으로 점수를 처음부터 다시 계산하는 함수
 function calculateScoresFromAnswers() {
-    // 점수 초기화
     scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
 
-    // userAnswers에 저장된 답변들을 바탕으로 점수 재계산
-    for (let i = 0; i < currentQuestionIndex; i++) { // 현재 질문 인덱스 이전까지의 답변만 계산
+    for (let i = 0; i < currentQuestionIndex; i++) {
         const answerType = userAnswers[i];
-        if (answerType === undefined) continue; // 답변이 없으면 건너뛰기
+        if (answerType === undefined) continue;
 
-        // 질문 인덱스에 따른 점수 부여 로직 (selectAnswer와 동일)
         if (i >= 0 && i <= 3) {
             if (answerType === 'A') scores.S++;
             else scores.F++;
@@ -248,36 +237,31 @@ function calculateScoresFromAnswers() {
     }
 }
 
-
 function goBack() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
-        // 뒤로 갈 때는 userAnswers에서 해당 질문의 답변을 제거하지 않음 (다시 선택 가능하게)
-        calculateScoresFromAnswers(); // 점수 재계산
-        loadQuestion(); // 이전 질문 로드
+        calculateScoresFromAnswers();
+        loadQuestion();
     }
-    // currentQuestionIndex가 0이면 loadQuestion에서 backButton이 숨겨짐
 }
 
-
 function calculateResult() {
-    // 결과 계산 전 최종 점수 계산 (혹시 뒤로 가기 후 마지막 질문 답변했을 경우를 대비)
     calculateScoresFromAnswers();
 
     let axis1Type;
     if (scores.S > scores.F) axis1Type = 'S';
     else if (scores.F > scores.S) axis1Type = 'F';
-    else axis1Type = 'B1'; // 균형점
+    else axis1Type = 'B1';
 
     let axis2Type;
     if (scores.I > scores.D) axis2Type = 'I';
     else if (scores.D > scores.I) axis2Type = 'D';
-    else axis2Type = 'B2'; // 균형점
+    else axis2Type = 'B2';
 
     let axis3Type;
     if (scores.P > scores.R) axis3Type = 'P';
     else if (scores.R > scores.P) axis3Type = 'R';
-    else axis3Type = 'B3'; // 균형점
+    else axis3Type = 'B3';
 
     const finalCombination = `${axis1Type}-${axis2Type}-${axis3Type}`;
     let resultNationKey = '';
@@ -311,8 +295,7 @@ function calculateResult() {
     else if (finalCombination === 'B1-B2-B3') { resultNationKey = '알 안달루스'; }
     else if (finalCombination === 'B1-B2-R') { resultNationKey = '대월'; }
     else {
-        // 모든 조합이 일치하지 않을 경우, 기본 결과 설정 (예: 수메르 또는 오류 메시지)
-        resultNationKey = "알 수 없음"; // "알 수 없음"으로 표시되도록 유지
+        resultNationKey = "알 수 없음";
     }
 
     displayResult(resultNationKey);
@@ -325,18 +308,16 @@ function displayResult(nationKey) {
     const resultData = results[nationKey];
     if (resultData) {
         resultNationName.textContent = nationKey;
-        // 국가 정보 표시
         resultNationInfo.textContent = `약 ${resultData.period} ${resultData.continent} 대륙의 나라`;
         resultNationMotto.textContent = resultData.motto;
 
-        resultKeywords.innerHTML = ''; // 기존 키워드 초기화
+        resultKeywords.innerHTML = '';
         resultData.keywords.forEach(keyword => {
             const span = document.createElement('span');
             span.textContent = keyword;
             resultKeywords.appendChild(span);
         });
 
-        // innerHTML을 사용하여 HTML 태그(<strong>)가 적용되도록 합니다.
         resultDescription.innerHTML = resultData.description;
     } else {
         resultNationName.textContent = "결과를 찾을 수 없습니다.";
@@ -346,7 +327,6 @@ function displayResult(nationKey) {
         resultDescription.textContent = "죄송합니다. 오류가 발생했거나, 당신의 성향은 너무나 독특하여 아직 분석되지 않았습니다.";
     }
 
-    // --- 폭죽 애니메이션 ---
     confetti({
         particleCount: 100,
         spread: 70,
@@ -365,10 +345,9 @@ function displayResult(nationKey) {
 function resetTest() {
     currentQuestionIndex = 0;
     scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
-    userAnswers = []; // 테스트 재시작 시 답변 이력 초기화
+    userAnswers = [];
     resultPage.classList.add('hidden');
     startPage.classList.remove('hidden');
-    // 진행바 초기화 (선택 사항, 시작 페이지로 돌아갈 때)
     if (progressBar) {
         progressBar.style.width = '0%';
     }
@@ -378,34 +357,42 @@ function resetTest() {
 function updateCurrentTime() {
     const now = new Date();
     const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월 (0부터 시작하므로 +1)
-    const day = now.getDate().toString().padStart(2, '0'); // 일
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
     let hours = now.getHours();
-    const minutes = now.getMinutes().toString().padStart(2, '0'); // 분
-    const ampm = hours >= 12 ? '오후' : '오전'; // 오전/오후 구분
-    hours = hours % 12; // 12시간제로 변환
-    hours = hours ? hours : 12; // 0시는 12시로 표시
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? '오후' : '오전';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
 
     const currentTimeString = `${year}년 ${month}월 ${day}일 ${ampm} ${hours}시 ${minutes}분`;
 
-    if (currentTimeElement) { // currentTimeElement가 존재하는지 확인
+    if (currentTimeElement) {
         currentTimeElement.textContent = currentTimeString;
     }
 }
 
-// ⭐ 새로 통합된 DOMContentLoaded 리스너
+// --- DOMContentLoaded 이벤트 리스너 (모든 초기화 및 이벤트 등록) ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 결과 이미지 저장하기 버튼 이벤트 리스너
-    const saveResultButton = document.getElementById('save-result-button');
+    // 1. 페이지 로드 시 현재 시간 업데이트 및 1분마다 업데이트 설정
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 60 * 1000);
+
+    // 2. 결과 이미지 저장하기 버튼 이벤트 리스너
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            const elementToCapture = document.getElementById('container'); 
-            html2canvas(elementToCapture, {
-                scale: 2,
+            const containerElement = document.getElementById('container'); // #container 요소 가져오기
+
+            // html2canvas 캡처 옵션
+            html2canvas(document.body, { // ⭐ 캡처 대상을 body로 설정
+                scale: 2, // 고해상도 캡처
                 useCORS: true,
                 logging: false,
-                windowHeight: elementToCapture.scrollHeight,
-                y: 0
+                // ⭐ #container의 위치와 높이만큼만 캡처하도록 설정
+                x: containerElement.offsetLeft,
+                y: containerElement.offsetTop,
+                width: containerElement.offsetWidth,
+                height: containerElement.offsetHeight
             }).then(canvas => {
                 const imageDataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
@@ -420,8 +407,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // 시계 업데이트 로직 (DOMContentLoaded 안에서 한 번 호출 후 주기적으로 호출)
-    updateCurrentTime(); // 페이지 로드 시 현재 시간 한 번 업데이트
-    setInterval(updateCurrentTime, 60 * 1000); // 1분(60초 * 1000밀리초)마다 시간 업데이트
 });
