@@ -146,7 +146,7 @@ const questionCounter = document.getElementById('question-counter');
 const questionText = document.getElementById('question-text');
 const answerButtons = document.querySelectorAll('.answer-button');
 const restartButton = document.getElementById('restart-button');
-const consultationButton = document.getElementById('consultation-button');
+const consultationButton = document.getElementById('consultation-button'); // HTML에는 없지만, 혹시 모를 경우를 대비해 DOM 요소로 가져옴
 const saveResultButton = document.getElementById('save-result-button');
 
 const resultNationName = document.getElementById('result-nation-name');
@@ -155,7 +155,7 @@ const resultNationMotto = document.getElementById('result-nation-motto');
 const resultKeywords = document.getElementById('result-keywords');
 const resultDescription = document.getElementById('result-description');
 
-// 진행바 DOM 요소 추가
+// 진행바 DOM 요소
 const progressBar = document.getElementById('progress-bar'); 
 
 // --- 4. 전역 변수 및 점수 초기화 ---
@@ -190,7 +190,7 @@ function loadQuestion() {
         answerButtons[0].textContent = q.A;
         answerButtons[1].textContent = q.B;
 
-        // 진행바 업데이트 로직 추가
+        // 진행바 업데이트 로직
         const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
         progressBar.style.width = `${progress}%`;
     } else {
@@ -201,7 +201,7 @@ function loadQuestion() {
 function selectAnswer(answerType) {
     const qIndex = currentQuestionIndex;
 
-    // 질문 인덱스에 따른 점수 부여 로직 (기존과 동일)
+    // 질문 인덱스에 따른 점수 부여 로직
     if (qIndex >= 0 && qIndex <= 3) {
         if (answerType === 'A') scores.S++;
         else scores.F++;
@@ -299,6 +299,23 @@ function displayResult(nationKey) {
         resultKeywords.innerHTML = "";
         resultDescription.textContent = "죄송합니다. 오류가 발생했거나, 당신의 성향은 너무나 독특하여 아직 분석되지 않았습니다.";
     }
+
+    // --- 폭죽 애니메이션 추가 ---
+    // confetti 함수 호출 (기본 설정으로 폭죽 터뜨리기)
+    confetti({
+        particleCount: 100, // 폭죽 조각 개수
+        spread: 70, // 폭죽 조각이 퍼지는 각도
+        origin: { y: 0.6 } // 폭죽이 터지는 시작점 (화면 중앙에서 약간 위)
+    });
+    // 한 번 더 터뜨려서 더 풍성하게
+    setTimeout(() => {
+        confetti({
+            particleCount: 80,
+            spread: 90,
+            origin: { y: 0.7, x: 0.3 },
+            colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'] // 추가 색상
+        });
+    }, 200); // 0.2초 뒤에 한 번 더 터뜨림
 }
 
 function resetTest() {
