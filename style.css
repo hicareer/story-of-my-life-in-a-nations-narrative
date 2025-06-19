@@ -58,7 +58,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content는 각 페이지에서 필요에 따라 오버라이드 */
     flex-grow: 1; /* 컨텐츠가 중앙에 오도록 함 */
 }
 
@@ -81,12 +81,12 @@ h1 { /* 검사 제목 */
     line-height: 1.2; /* 제목 줄 간격 */
 }
 
-/* 부제 스타일 (시작 페이지 하위 p 태그) - 수정됨 */
-#start-page p {
-    font-size: 1.05em; /* 글자 크기 조금 더 줄임 */
-    color: #444; /* 연한 검정으로 변경 */
-    margin-top: 0px; /* 제목과의 간격 조절 */
-    margin-bottom: 30px; /* 버튼과의 간격 조절 */
+/* 부제 스타일 (시작 페이지 하위 p 태그) */
+#start-page p { /* 이 선택자로 정확히 부제에만 적용됩니다. */
+    font-size: 1.05em; /* 글자 크기 */
+    color: #444; /* 연한 검정 */
+    margin-top: 0px; /* 제목과의 간격 */
+    margin-bottom: 30px; /* 버튼과의 간격 */
     font-weight: 500; /* Medium 굵기 */
     line-height: 1.4; /* 줄 간격 */
 }
@@ -99,7 +99,9 @@ h2 { /* 질문 텍스트 */
     line-height: 1.4;
 }
 
-p { /* 일반 본문 (이 스타일은 저작권에 적용되지 않도록 #copyright를 따로 설정) */
+/* 일반 p 태그는 그대로 두고, #copyright만 따로 스타일링합니다. */
+/* 따라서 아래 p {} 블록은 그대로 두세요. */
+p {
     font-size: 1.1em;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -110,7 +112,6 @@ p { /* 일반 본문 (이 스타일은 저작권에 적용되지 않도록 #copy
 #result-description strong {
     font-weight: 600; /* Strong 태그에 Bold 굵기 적용 */
 }
-
 
 button {
     background-color: #6ab870; /* 초록 계열 */
@@ -126,7 +127,7 @@ button {
     font-weight: 500; /* 버튼 텍스트 Medium 굵기 */
     font-family: 'Paperlogy', sans-serif; /* 폰트 적용 */
     white-space: normal; /* 텍스트가 넘치면 자동으로 줄 바꿈 */
-    line-height: 1.4;    /* 줄 간격 조정 (1.2는 좁게, 1.6은 넓게) */
+    line-height: 1.4;    /* 줄 간격 조정 */
     text-align: center;  /* 여러 줄일 경우 텍스트를 가운데 정렬 */
 }
 
@@ -201,13 +202,13 @@ button:hover {
     margin-bottom: 25px;
 }
 
-/* 저작권 문구 - 수정됨: 글자 크기 다시 줄이고 위치 조정 */
+/* 저작권 문구 - 최종 수정! */
 #copyright {
-    font-size: 0.8em; /* 글자 크기 확 줄임 */
+    font-size: 0.8em; /* 글자 크기 아주 작게 */
     color: #7f8c8d; /* 연한 회색 */
-    margin-top: 30px; /* 위쪽 여백으로 위치 조정 */
+    margin-top: 35px; /* 시작하기 버튼과의 간격을 더 벌림 */
     font-weight: 400;
-    line-height: 1.4; /* 줄 간격 조정 */
+    line-height: 1.4; /* 줄 간격 */
 }
 
 /* 결과 페이지 castle.png 이미지 스타일 */
@@ -227,7 +228,6 @@ button:hover {
     background-color: #e0b43e; /* 호버 시 살짝 어두운 노란색 */
 }
 
-
 /* 반응형 웹 디자인 (모바일 최적화) */
 @media (max-width: 768px) {
     #container {
@@ -244,9 +244,18 @@ button:hover {
         font-size: 1.4em;
     }
 
-    p {
+    /* 일반 p 태그와 저작권 p 태그가 겹치지 않도록 주의 */
+    p { /* 일반 본문용 p */
         font-size: 0.95em;
     }
+    #copyright { /* 저작권 p는 별도로 모바일에서도 동일하게 적용 */
+        font-size: 0.75em; /* 모바일에서 더 작게 */
+        margin-top: 25px; /* 모바일에서 간격 조정 */
+    }
+    #start-page p { /* 부제 p도 모바일에서 별도 조절 */
+        font-size: 0.95em;
+    }
+
 
     button {
         padding: 12px 20px;
