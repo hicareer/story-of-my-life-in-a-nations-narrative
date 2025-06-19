@@ -106,6 +106,7 @@ button {
     margin-top: 15px;
     min-width: 200px; /* 버튼 최소 너비 */
     font-weight: 500; /* 버튼 텍스트 Medium 굵기 */
+    font-family: 'Paperlogy', sans-serif; /* 이 줄을 추가합니다. */
 }
 
 button:hover {
