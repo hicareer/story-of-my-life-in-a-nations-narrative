@@ -28,7 +28,7 @@ const questions = [
     {
         question: "다른 사람과 함께하는 활동에서<br>나는 어떤 역할에 더 끌리는가?",
         A: "팀을 이끌거나 새로운 방향을 제시하는 리더 역할을 선호한다.",
-        B: "조율하고 지지하며 팀 내 안정과 깊이를 더하는 역할을 선호한다."
+        B: "조율하고 지지하며 팀 내 안정과 깊이를 더하는 역할을 선한다."
     },
     {
         question: "새로운 분야에 도전할 때<br>나는 무엇에 더 흥미를 느끼는가?",
@@ -68,7 +68,7 @@ const results = {
         period: "BC 4500년 ~ BC 1900년 경",
         continent: "아시아",
         motto: "문명의 씨앗을 뿌리는 선구자",
-        keywords: ["창조", "기원", "혁신", "기록", "시스템", "개척"],
+        keywords: ["창조", "결정", "혁신", "기록", "시스템", "개척"],
         description: "인류 최초의 문명인 수메르가 쐐기 문자, 도시, 법전 등 혁신적인 시스템을 창조하며 문명의 기틀을 다졌듯이, 당신은 <strong>새로운 시작을 두려워하지 않는 개척자</strong>입니다. 견고한 의지와 논리적인 사고로 세상에 없던 길을 만들고, 탁월한 추진력으로 복잡한 문제 속에서 자신만의 해결책을 찾아냅니다. 당신의 삶은 익숙한 길을 따르기보다 <strong>새로운 가능성을 탐색하고, 혁신적인 아이디어로 주변에 영감</strong>을 줍니다. 때로는 고독할 수 있지만, 당신이 놓는 한 걸음 한 걸음이 미래의 견고한 기반이 됩니다."
     },
     "아케메네스 페르시아 제국": {
@@ -170,21 +170,6 @@ answerButtons.forEach(button => {
 });
 restartButton.addEventListener('click', resetTest);
 
-// NOTE: 이전에 'consultationButton'에 연결되어 있던 NaCircle 챌린지 신청 링크를
-// index.html에서 <a> 태그를 이용한 버튼으로 변경했으므로, 여기서는 해당 이벤트 리스너를 제거합니다.
-// consultationButton.addEventListener('click', () => {
-//     window.open('https://forms.google/YOUR_FORM_LINK_HERE', '_blank');
-// });
-
-// NaCircle 챌린지 신청 버튼 (index.html에서 <a> 태그로 감싸져 있으므로 여기서는 별도 이벤트 리스너 필요 없음)
-// 단, 만약 NaCircle 챌린지 버튼에 특정 JS 동작(예: 로그 기록)이 필요하다면 여기에 추가할 수 있습니다.
-// const nacircleChallengeButton = document.getElementById('nacircle-challenge-button');
-// if (nacircleChallengeButton) {
-//     nacircleChallengeButton.addEventListener('click', () => {
-//         // 여기에 필요한 JS 동작을 추가 (예: console.log('NaCircle 챌린지 신청 버튼 클릭됨');)
-//     });
-// }
-
 
 // --- 6. 함수 정의 ---
 
@@ -198,7 +183,7 @@ function loadQuestion() {
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
         questionCounter.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
-        questionText.innerHTML = q.question; // <-- .textContent를 .innerHTML로 변경
+        questionText.innerHTML = q.question;
         answerButtons[0].textContent = q.A;
         answerButtons[1].textContent = q.B;
     } else {
@@ -323,12 +308,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // saveResultButton이 존재하는 경우에만 이벤트 리스너를 추가
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            // 결과 페이지의 모든 콘텐츠와 배경을 포함하기 위해 body 또는 최상위 요소를 캡처
-            const elementToCapture = document.body; 
-            // 또는 더 정확하게는 id="container" 바깥의 요소 중, 배경까지 포함할 수 있는 가장 적절한 상위 요소 (body)
-            
+            // 결과 페이지의 모든 콘텐츠와 배경을 포함하기 위해 body를 캡처
+            const elementToCapture = document.body; // <--- 이 부분이 수정되었습니다!
+
             // html2canvas를 사용하여 결과 페이지를 캔버스로 변환
-            html2canvas(resultPageToCapture, {
+            html2canvas(elementToCapture, { // <--- 이 부분도 수정되었습니다!
                 scale: 2, // 고해상도 캡처를 위해 스케일 증가 (선택 사항)
                 useCORS: true, // 외부 이미지(예: castle.png) 사용 시 필요
                 logging: false // 콘솔 로그 비활성화
