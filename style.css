@@ -51,7 +51,7 @@ body {
     min-height: 600px; /* 모든 페이지에 적용될 최소 높이 */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* 하단 저작권 문구를 아래로 보내기 위함 */
 }
 
 .page {
@@ -59,7 +59,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;
+    flex-grow: 1; /* 컨텐츠가 중앙에 오도록 함 */
+}
+
+/* 시작 페이지에 대한 추가 스타일 (내부 요소 정렬) */
+#start-page {
+    justify-content: flex-start; /* 상단부터 요소 배치 */
+    padding-top: 50px; /* 상단 여백 추가 */
+    padding-bottom: 50px; /* 하단 여백 추가 */
 }
 
 .hidden {
@@ -70,16 +77,18 @@ h1 { /* 검사 제목 */
     font-size: 2.2em;
     font-weight: 600; /* Bold 굵기 적용 */
     color: #2c3e50;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* 부제와의 간격 조절 */
+    line-height: 1.2; /* 제목 줄 간격 */
 }
-/* 부제 스타일 (시작 페이지 하위 p 태그) */
+
+/* 부제 스타일 (시작 페이지 하위 p 태그) - 수정됨 */
 #start-page p {
-    font-size: 1.15em; /* 글자 크기 조금 크게 */
-    color: #555; /* 진한 회색 */
-    margin-top: 0px; /* 제목과의 간격 조정 (0으로 설정하여 h1의 margin-bottom과 조화) */
-    margin-bottom: 30px; /* 버튼과의 간격 조정 */
+    font-size: 1.05em; /* 글자 크기 조금 더 줄임 */
+    color: #444; /* 연한 검정으로 변경 */
+    margin-top: 0px; /* 제목과의 간격 조절 */
+    margin-bottom: 30px; /* 버튼과의 간격 조절 */
     font-weight: 500; /* Medium 굵기 */
-    line-height: 1.4; /* 줄 간격 (한 줄이지만 혹시 모를 경우 대비) */
+    line-height: 1.4; /* 줄 간격 */
 }
 
 h2 { /* 질문 텍스트 */
@@ -90,7 +99,7 @@ h2 { /* 질문 텍스트 */
     line-height: 1.4;
 }
 
-p { /* 일반 본문 */
+p { /* 일반 본문 (이 스타일은 저작권에 적용되지 않도록 #copyright를 따로 설정) */
     font-size: 1.1em;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -115,8 +124,7 @@ button {
     margin-top: 15px;
     min-width: 200px; /* 버튼 최소 너비 */
     font-weight: 500; /* 버튼 텍스트 Medium 굵기 */
-    font-family: 'Paperlogy', sans-serif; /* 이 줄을 추가합니다. */
-    /* --- 이 아래 세 줄을 추가 또는 수정합니다 --- */
+    font-family: 'Paperlogy', sans-serif; /* 폰트 적용 */
     white-space: normal; /* 텍스트가 넘치면 자동으로 줄 바꿈 */
     line-height: 1.4;    /* 줄 간격 조정 (1.2는 좁게, 1.6은 넓게) */
     text-align: center;  /* 여러 줄일 경우 텍스트를 가운데 정렬 */
@@ -193,12 +201,13 @@ button:hover {
     margin-bottom: 25px;
 }
 
-/* 저작권 문구 */
+/* 저작권 문구 - 수정됨: 글자 크기 다시 줄이고 위치 조정 */
 #copyright {
-    font-size: 0.8em;
-    color: #7f8c8d;
-    margin-top: 30px;
+    font-size: 0.8em; /* 글자 크기 확 줄임 */
+    color: #7f8c8d; /* 연한 회색 */
+    margin-top: 30px; /* 위쪽 여백으로 위치 조정 */
     font-weight: 400;
+    line-height: 1.4; /* 줄 간격 조정 */
 }
 
 /* 결과 페이지 castle.png 이미지 스타일 */
