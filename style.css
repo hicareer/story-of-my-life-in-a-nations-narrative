@@ -158,7 +158,7 @@ button:active {
     /* 기존: background-color: #bbbbbb; color: #444; */
     background-color: #d8d8d8; /* #container 배경색보다 조금 더 진한 회색 */
     color: #666; /* 텍스트 색상도 조금 더 진하게 */
-    margin-top: 40px; /* 간격 조정! */
+    margin-top: 70px; /* 간격 조정! */
     font-size: 0.9em; /* 다른 버튼보다 조금 작게 */
     padding: 10px 20px; /* 패딩도 조금 작게 */
     min-width: 150px; /* 너비 조정 */
