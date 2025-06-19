@@ -58,7 +58,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content는 각 페이지에서 필요에 따라 오버라이드 */
     flex-grow: 1; /* 컨텐츠가 중앙에 오도록 함 */
 }
 
@@ -82,7 +81,7 @@ h1 { /* 검사 제목 */
 }
 
 /* 부제 스타일 (시작 페이지 하위 p 태그) */
-#start-page p { /* 이 선택자로 정확히 부제에만 적용됩니다. */
+#start-page p {
     font-size: 1.05em; /* 글자 크기 */
     color: #444; /* 연한 검정 */
     margin-top: 0px; /* 제목과의 간격 */
@@ -99,8 +98,7 @@ h2 { /* 질문 텍스트 */
     line-height: 1.4;
 }
 
-/* 일반 p 태그는 그대로 두고, #copyright만 따로 스타일링합니다. */
-/* 따라서 아래 p {} 블록은 그대로 두세요. */
+/* 일반 p 태그 (저작권 문구에는 적용되지 않도록 #copyright 우선순위 높임) */
 p {
     font-size: 1.1em;
     line-height: 1.6;
@@ -202,13 +200,14 @@ button:hover {
     margin-bottom: 25px;
 }
 
-/* 저작권 문구 - 최종 수정! */
+/* 저작권 문구 - 최종 최종 수정! !important 추가! */
 #copyright {
-    font-size: 0.8em; /* 글자 크기 아주 작게 */
-    color: #7f8c8d; /* 연한 회색 */
-    margin-top: 35px; /* 시작하기 버튼과의 간격을 더 벌림 */
-    font-weight: 400;
-    line-height: 1.4; /* 줄 간격 */
+    font-size: 0.8em !important; /* 글자 크기 아주 작게, !important로 강제 적용 */
+    color: #7f8c8d !important; /* 연한 회색, !important로 강제 적용 */
+    margin-top: 35px !important; /* 시작하기 버튼과의 간격을 더 벌림, !important로 강제 적용 */
+    margin-bottom: 0px !important; /* 컨테이너 바닥에 붙도록 여백 제거 */
+    font-weight: 400 !important;
+    line-height: 1.4 !important; /* 줄 간격 */
 }
 
 /* 결과 페이지 castle.png 이미지 스타일 */
@@ -219,13 +218,13 @@ button:hover {
 }
 
 /* 추가 버튼 스타일 (진로 상담 접수하기) */
-#consultation-button { /* ID 선택자로 변경하여 정확히 해당 버튼에만 적용 */
-    background-color: #f2c94c; /* 요청하신 노란색 계열 */
+#consultation-button {
+    background-color: #f2c94c;
     margin-top: 10px;
-    color: #333; /* 글자색 검정 또는 어두운 색으로 변경 */
+    color: #333;
 }
 #consultation-button:hover {
-    background-color: #e0b43e; /* 호버 시 살짝 어두운 노란색 */
+    background-color: #e0b43e;
 }
 
 /* 반응형 웹 디자인 (모바일 최적화) */
@@ -248,14 +247,14 @@ button:hover {
     p { /* 일반 본문용 p */
         font-size: 0.95em;
     }
-    #copyright { /* 저작권 p는 별도로 모바일에서도 동일하게 적용 */
-        font-size: 0.75em; /* 모바일에서 더 작게 */
-        margin-top: 25px; /* 모바일에서 간격 조정 */
+    /* 모바일 저작권 문구 - !important 추가 */
+    #copyright {
+        font-size: 0.75em !important; /* 모바일에서 더 작게, !important로 강제 적용 */
+        margin-top: 25px !important; /* 모바일에서 간격 조정, !important로 강제 적용 */
     }
     #start-page p { /* 부제 p도 모바일에서 별도 조절 */
         font-size: 0.95em;
     }
-
 
     button {
         padding: 12px 20px;
