@@ -239,6 +239,18 @@ button:hover {
     background-color: #e0b43e; /* 호버 시 살짝 어두운 노란색 */
 }
 
+/* --- 결과 이미지 저장하기 버튼 스타일 --- */
+#save-result-button {
+    background-color: #5cb85c; /* 조금 더 진한 초록색 */
+    color: white;
+    margin-top: 10px; /* 위 버튼과의 간격 */
+    margin-bottom: 20px; /* 하단 여백 */
+}
+
+#save-result-button:hover {
+    background-color: #4cae4c; /* 호버 시 더 진한 초록색 */
+}
+
 /* 결과 페이지 하단 안내 문구 스타일 */
 #disclaimer-text {
     font-size: 0.75em; /* 아주 작게 */
@@ -289,6 +301,12 @@ button:hover {
         margin-top: 15px; /* 모바일에서 간격 조정 */
         margin-bottom: 8px;
     }
+    /* --- 모바일 반응형에서 결과 이미지 저장하기 버튼 스타일 추가됨 --- */
+    #save-result-button {
+        margin-top: 10px; /* 모바일에서 간격 조정 */
+        margin-bottom: 15px; /* 모바일에서 하단 여백 */
+    }
+
 
     button {
         padding: 12px 20px;
