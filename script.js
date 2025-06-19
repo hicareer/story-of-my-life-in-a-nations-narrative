@@ -146,14 +146,17 @@ const questionCounter = document.getElementById('question-counter');
 const questionText = document.getElementById('question-text');
 const answerButtons = document.querySelectorAll('.answer-button');
 const restartButton = document.getElementById('restart-button');
-const consultationButton = document.getElementById('consultation-button'); // 이 ID는 이제 NaCircle 챌린지 버튼이 아니므로 사용되지 않습니다.
-const saveResultButton = document.getElementById('save-result-button'); // 새로 추가된 버튼
+const consultationButton = document.getElementById('consultation-button');
+const saveResultButton = document.getElementById('save-result-button');
 
 const resultNationName = document.getElementById('result-nation-name');
-const resultNationInfo = document.getElementById('result-nation-info'); // 추가된 국가 정보 표시 요소
+const resultNationInfo = document.getElementById('result-nation-info');
 const resultNationMotto = document.getElementById('result-nation-motto');
 const resultKeywords = document.getElementById('result-keywords');
 const resultDescription = document.getElementById('result-description');
+
+// 진행바 DOM 요소 추가
+const progressBar = document.getElementById('progress-bar'); 
 
 // --- 4. 전역 변수 및 점수 초기화 ---
 let currentQuestionIndex = 0;
@@ -186,6 +189,10 @@ function loadQuestion() {
         questionText.innerHTML = q.question;
         answerButtons[0].textContent = q.A;
         answerButtons[1].textContent = q.B;
+
+        // 진행바 업데이트 로직 추가
+        const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
     } else {
         calculateResult();
     }
@@ -259,8 +266,7 @@ function calculateResult() {
     else if (finalCombination === 'B1-B2-R') { resultNationKey = '대월'; }
     else {
         // 모든 조합이 일치하지 않을 경우, 기본 결과 설정 (예: 수메르 또는 오류 메시지)
-        // 여기서는 매칭되지 않으면 "결과를 찾을 수 없습니다."로 표시됩니다.
-        resultNationKey = "알 수 없음";
+        resultNationKey = "알 수 없음"; // "알 수 없음"으로 표시되도록 유지
     }
 
     displayResult(resultNationKey);
@@ -300,33 +306,31 @@ function resetTest() {
     scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
     resultPage.classList.add('hidden');
     startPage.classList.remove('hidden');
+    // 진행바 초기화 (선택 사항, 시작 페이지로 돌아갈 때)
+    if (progressBar) {
+        progressBar.style.width = '0%';
+    }
 }
 
-// --- 결과 이미지 저장하기 버튼 이벤트 리스너 (새로 추가된 부분) ---
+// --- 결과 이미지 저장하기 버튼 이벤트 리스너 ---
 document.addEventListener('DOMContentLoaded', () => {
     const saveResultButton = document.getElementById('save-result-button');
-    // saveResultButton이 존재하는 경우에만 이벤트 리스너를 추가
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            // 결과 페이지의 모든 콘텐츠와 배경을 포함하기 위해 body를 캡처
-            const elementToCapture = document.body; // <--- 이 부분이 수정되었습니다!
+            const elementToCapture = document.body;
 
-            // html2canvas를 사용하여 결과 페이지를 캔버스로 변환
-            html2canvas(elementToCapture, { // <--- 이 부분도 수정되었습니다!
-                scale: 2, // 고해상도 캡처를 위해 스케일 증가 (선택 사항)
-                useCORS: true, // 외부 이미지(예: castle.png) 사용 시 필요
-                logging: false // 콘솔 로그 비활성화
+            html2canvas(elementToCapture, {
+                scale: 2,
+                useCORS: true,
+                logging: false
             }).then(canvas => {
-                // 캔버스를 이미지 데이터 URL로 변환
-                const imageDataURL = canvas.toDataURL('image/png'); // PNG 이미지로 저장
-
-                // 다운로드 링크 생성
+                const imageDataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
                 link.href = imageDataURL;
-                link.download = '나의_인생_서사_결과.png'; // 저장될 파일 이름
-                document.body.appendChild(link); // 링크를 문서에 추가 (보이지 않게)
-                link.click(); // 링크 클릭 (다운로드 실행)
-                document.body.removeChild(link); // 링크 제거
+                link.download = '나의_인생_서사_결과.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }).catch(error => {
                 console.error('이미지 저장 중 오류 발생:', error);
                 alert('결과 이미지 저장에 실패했습니다. 다시 시도해 주세요.');
