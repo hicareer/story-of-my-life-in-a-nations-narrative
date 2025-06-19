@@ -107,6 +107,10 @@ button {
     min-width: 200px; /* 버튼 최소 너비 */
     font-weight: 500; /* 버튼 텍스트 Medium 굵기 */
     font-family: 'Paperlogy', sans-serif; /* 이 줄을 추가합니다. */
+    /* --- 이 아래 세 줄을 추가 또는 수정합니다 --- */
+    white-space: normal; /* 텍스트가 넘치면 자동으로 줄 바꿈 */
+    line-height: 1.4;    /* 줄 간격 조정 (1.2는 좁게, 1.6은 넓게) */
+    text-align: center;  /* 여러 줄일 경우 텍스트를 가운데 정렬 */
 }
 
 button:hover {
