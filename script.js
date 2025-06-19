@@ -1,4 +1,4 @@
-// --- 1. 질문 데이터 정의 (변경 없음) ---
+// --- 1. 질문 데이터 정의 ---
 const questions = [
     {
         question: "새로운 일을 시작할 때 나는 주로 어떤 모습인가?",
@@ -62,7 +62,7 @@ const questions = [
     }
 ];
 
-// --- 2. 결과 데이터 정의 (굵게 표시 수정 완료, 국가 정보 추가) ---
+// --- 2. 결과 데이터 정의 (굵게 표시 수정 및 국가 정보 추가 완료) ---
 const results = {
     "수메르": {
         period: "약 BC 4500년 ~ BC 1900년 경",
@@ -182,4 +182,124 @@ function startTest() {
 
 function loadQuestion() {
     if (currentQuestionIndex < questions.length) {
-        const q = questions
+        const q = questions[currentQuestionIndex];
+        questionCounter.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
+        questionText.textContent = q.question;
+        answerButtons[0].textContent = q.A;
+        answerButtons[1].textContent = q.B;
+    } else {
+        calculateResult();
+    }
+}
+
+function selectAnswer(answerType) {
+    const qIndex = currentQuestionIndex;
+
+    // 질문 인덱스에 따른 점수 부여 로직 (기존과 동일)
+    if (qIndex >= 0 && qIndex <= 3) {
+        if (answerType === 'A') scores.S++;
+        else scores.F++;
+    } else if (qIndex >= 4 && qIndex <= 7) {
+        if (answerType === 'A') scores.I++;
+        else scores.D++;
+    } else if (qIndex >= 8 && qIndex <= 11) {
+        if (answerType === 'A') scores.P++;
+        else scores.R++;
+    }
+
+    currentQuestionIndex++;
+    loadQuestion(); // 다음 질문 로드 또는 결과 계산
+}
+
+function calculateResult() {
+    let axis1Type;
+    if (scores.S > scores.F) axis1Type = 'S';
+    else if (scores.F > scores.S) axis1Type = 'F';
+    else axis1Type = 'B1'; // 균형점
+
+    let axis2Type;
+    if (scores.I > scores.D) axis2Type = 'I';
+    else if (scores.D > scores.I) axis2Type = 'D';
+    else axis2Type = 'B2'; // 균형점
+
+    let axis3Type;
+    if (scores.P > scores.R) axis3Type = 'P';
+    else if (scores.R > scores.P) axis3Type = 'R';
+    else axis3Type = 'B3'; // 균형점
+
+    const finalCombination = `${axis1Type}-${axis2Type}-${axis3Type}`;
+    let resultNationKey = '';
+
+    // --- 7. 결과 매칭 로직 (27가지 조합 모두 커버) ---
+    if (finalCombination === 'S-I-P') { resultNationKey = '수메르'; }
+    else if (finalCombination === 'S-I-B3') { resultNationKey = '아케메네스 페르시아 제국'; }
+    else if (finalCombination === 'S-I-R') { resultNationKey = '발해'; }
+    else if (finalCombination === 'S-D-P') { resultNationKey = '잉카 제국'; }
+    else if (finalCombination === 'S-D-B3') { resultNationKey = '비잔티움 제국'; }
+    else if (finalCombination === 'S-D-R') { resultNationKey = '아즈텍 제국'; }
+    else if (finalCombination === 'S-B2-P') { resultNationKey = '잉카 제국'; }
+    else if (finalCombination === 'S-B2-B3') { resultNationKey = '비잔티움 제국'; }
+    else if (finalCombination === 'S-B2-R') { resultNationKey = '아즈텍 제국'; }
+    else if (finalCombination === 'F-I-P') { resultNationKey = '카르타고'; }
+    else if (finalCombination === 'F-I-B3') { resultNationKey = '베네치아 공화국'; }
+    else if (finalCombination === 'F-I-R') { resultNationKey = '카르타고'; }
+    else if (finalCombination === 'F-D-P') { resultNationKey = '베네치아 공화국'; }
+    else if (finalCombination === 'F-D-B3') { resultNationKey = '알 안달루스'; }
+    else if (finalCombination === 'F-D-R') { resultNationKey = '대월'; }
+    else if (finalCombination === 'F-B2-P') { resultNationKey = '베네치아 공화국'; }
+    else if (finalCombination === 'F-B2-B3') { resultNationKey = '알 안달루스'; }
+    else if (finalCombination === 'F-B2-R') { resultNationKey = '대월'; }
+    else if (finalCombination === 'B1-I-P') { resultNationKey = '수메르'; }
+    else if (finalCombination === 'B1-I-B3') { resultNationKey = '아케메네스 페르시아 제국'; }
+    else if (finalCombination === 'B1-I-R') { resultNationKey = '발해'; }
+    else if (finalCombination === 'B1-D-P') { resultNationKey = '잉카 제국'; }
+    else if (finalCombination === 'B1-D-B3') { resultNationKey = '비잔티움 제국'; }
+    else if (finalCombination === 'B1-D-R') { resultNationKey = '아즈텍 제국'; }
+    else if (finalCombination === 'B1-B2-P') { resultNationKey = '베네치아 공화국'; }
+    else if (finalCombination === 'B1-B2-B3') { resultNationKey = '알 안달루스'; }
+    else if (finalCombination === 'B1-B2-R') { resultNationKey = '대월'; }
+    else {
+        // 모든 조합이 일치하지 않을 경우, 기본 결과 설정 (예: 수메르 또는 오류 메시지)
+        // 여기서는 가장 보편적인 수메르로 지정하거나, 오류 메시지를 띄울 수 있습니다.
+        // 현재는 매칭되지 않으면 "결과를 찾을 수 없습니다."로 표시됩니다.
+        resultNationKey = "알 수 없음";
+    }
+
+    displayResult(resultNationKey);
+}
+
+function displayResult(nationKey) {
+    questionPage.classList.add('hidden');
+    resultPage.classList.remove('hidden');
+
+    const resultData = results[nationKey];
+    if (resultData) {
+        resultNationName.textContent = nationKey;
+        // 국가 정보 표시
+        resultNationInfo.textContent = `약 ${resultData.period} ${resultData.continent} 대륙의 나라`;
+        resultNationMotto.textContent = resultData.motto;
+
+        resultKeywords.innerHTML = ''; // 기존 키워드 초기화
+        resultData.keywords.forEach(keyword => {
+            const span = document.createElement('span');
+            span.textContent = keyword;
+            resultKeywords.appendChild(span);
+        });
+
+        // innerHTML을 사용하여 HTML 태그(<strong>)가 적용되도록 합니다.
+        resultDescription.innerHTML = resultData.description;
+    } else {
+        resultNationName.textContent = "결과를 찾을 수 없습니다.";
+        resultNationInfo.textContent = "";
+        resultNationMotto.textContent = "";
+        resultKeywords.innerHTML = "";
+        resultDescription.textContent = "죄송합니다. 오류가 발생했거나, 당신의 성향은 너무나 독특하여 아직 분석되지 않았습니다.";
+    }
+}
+
+function resetTest() {
+    currentQuestionIndex = 0;
+    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
+    resultPage.classList.add('hidden');
+    startPage.classList.remove('hidden');
+}
