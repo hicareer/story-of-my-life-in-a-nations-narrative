@@ -146,7 +146,8 @@ const questionCounter = document.getElementById('question-counter');
 const questionText = document.getElementById('question-text');
 const answerButtons = document.querySelectorAll('.answer-button');
 const restartButton = document.getElementById('restart-button');
-const consultationButton = document.getElementById('consultation-button');
+const consultationButton = document.getElementById('consultation-button'); // 이 ID는 이제 NaCircle 챌린지 버튼이 아니므로 사용되지 않습니다.
+const saveResultButton = document.getElementById('save-result-button'); // 새로 추가된 버튼
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationInfo = document.getElementById('result-nation-info'); // 추가된 국가 정보 표시 요소
@@ -168,11 +169,22 @@ answerButtons.forEach(button => {
     button.addEventListener('click', (event) => selectAnswer(event.target.dataset.answerType));
 });
 restartButton.addEventListener('click', resetTest);
-consultationButton.addEventListener('click', () => {
-    window.open('https://forms.gle/YOUR_FORM_LINK_HERE', '_blank'); // 여기에 실제 구글 폼 링크를 넣어주세요.
-});
 
-// --- 6. 함수 정의 ---
+// NOTE: 이전에 'consultationButton'에 연결되어 있던 NaCircle 챌린지 신청 링크를
+// index.html에서 <a> 태그를 이용한 버튼으로 변경했으므로, 여기서는 해당 이벤트 리스너를 제거합니다.
+// consultationButton.addEventListener('click', () => {
+//     window.open('https://forms.google/YOUR_FORM_LINK_HERE', '_blank');
+// });
+
+// NaCircle 챌린지 신청 버튼 (index.html에서 <a> 태그로 감싸져 있으므로 여기서는 별도 이벤트 리스너 필요 없음)
+// 단, 만약 NaCircle 챌린지 버튼에 특정 JS 동작(예: 로그 기록)이 필요하다면 여기에 추가할 수 있습니다.
+// const nacircleChallengeButton = document.getElementById('nacircle-challenge-button');
+// if (nacircleChallengeButton) {
+//     nacircleChallengeButton.addEventListener('click', () => {
+//         // 여기에 필요한 JS 동작을 추가 (예: console.log('NaCircle 챌린지 신청 버튼 클릭됨');)
+//     });
+// }
+
 
 // --- 6. 함수 정의 ---
 
@@ -304,3 +316,35 @@ function resetTest() {
     resultPage.classList.add('hidden');
     startPage.classList.remove('hidden');
 }
+
+// --- 결과 이미지 저장하기 버튼 이벤트 리스너 (새로 추가된 부분) ---
+document.addEventListener('DOMContentLoaded', () => {
+    const saveResultButton = document.getElementById('save-result-button');
+    // saveResultButton이 존재하는 경우에만 이벤트 리스너를 추가
+    if (saveResultButton) {
+        saveResultButton.addEventListener('click', () => {
+            const resultPageToCapture = document.getElementById('result-page'); // 결과 페이지 전체를 캡처
+            
+            // html2canvas를 사용하여 결과 페이지를 캔버스로 변환
+            html2canvas(resultPageToCapture, {
+                scale: 2, // 고해상도 캡처를 위해 스케일 증가 (선택 사항)
+                useCORS: true, // 외부 이미지(예: castle.png) 사용 시 필요
+                logging: false // 콘솔 로그 비활성화
+            }).then(canvas => {
+                // 캔버스를 이미지 데이터 URL로 변환
+                const imageDataURL = canvas.toDataURL('image/png'); // PNG 이미지로 저장
+
+                // 다운로드 링크 생성
+                const link = document.createElement('a');
+                link.href = imageDataURL;
+                link.download = '나의_인생_서사_결과.png'; // 저장될 파일 이름
+                document.body.appendChild(link); // 링크를 문서에 추가 (보이지 않게)
+                link.click(); // 링크 클릭 (다운로드 실행)
+                document.body.removeChild(link); // 링크 제거
+            }).catch(error => {
+                console.error('이미지 저장 중 오류 발생:', error);
+                alert('결과 이미지 저장에 실패했습니다. 다시 시도해 주세요.');
+            });
+        });
+    }
+});
