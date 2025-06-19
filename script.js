@@ -378,16 +378,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveResultButton = document.getElementById('save-result-button');
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            // 캡처할 요소는 #container 전체로 변경
-            const elementToCapture = document.getElementById('container'); 
+            // 캡처할 요소를 body 전체로 변경 (이 줄만 수정됩니다)
+            const elementToCapture = document.body; // 기존: document.getElementById('container');
 
             html2canvas(elementToCapture, {
                 scale: 2, // 고해상도 캡처
                 useCORS: true,
                 logging: false,
                 // 스크롤이 있는 경우를 대비하여 Y축 스크롤 위치를 0으로 설정
-                windowHeight: elementToCapture.scrollHeight,
-                y: 0
+                // body를 캡처할 때는 window.scrollY를 사용하는 것이 더 정확할 수 있습니다.
+                // windowHeight: elementToCapture.scrollHeight, // body 캡처 시 제거하거나 조정 필요
+                // y: 0 // body 캡처 시 제거하거나 조정 필요
             }).then(canvas => {
                 const imageDataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
@@ -399,6 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(error => {
                 console.error('이미지 저장 중 오류 발생:', error);
                 alert('결과 이미지 저장에 실패했습니다. 다시 시도해 주세요.');
+        
             });
         });
     }
