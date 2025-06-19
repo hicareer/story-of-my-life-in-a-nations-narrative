@@ -149,6 +149,7 @@ const restartButton = document.getElementById('restart-button');
 // const consultationButton = document.getElementById('consultation-button'); // HTML에는 없지만, 혹시 모를 경우를 대비해 DOM 요소로 가져옴
 const saveResultButton = document.getElementById('save-result-button');
 const backButton = document.getElementById('back-button'); // 뒤로 가기 버튼 DOM 요소 추가
+const currentTimeElement = document.getElementById('current-time');
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationInfo = document.getElementById('result-nation-info');
@@ -373,6 +374,25 @@ function resetTest() {
     }
 }
 
+// --- 현재 시간 업데이트 함수 ---
+function updateCurrentTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월 (0부터 시작하므로 +1)
+    const day = now.getDate().toString().padStart(2, '0'); // 일
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0'); // 분
+    const ampm = hours >= 12 ? '오후' : '오전'; // 오전/오후 구분
+    hours = hours % 12; // 12시간제로 변환
+    hours = hours ? hours : 12; // 0시는 12시로 표시
+
+    const currentTimeString = `${year}년 ${month}월 ${day}일 ${ampm} ${hours}시 ${minutes}분`;
+
+    if (currentTimeElement) { // currentTimeElement가 존재하는지 확인
+        currentTimeElement.textContent = currentTimeString;
+    }
+}
+
 // --- 결과 이미지 저장하기 버튼 이벤트 리스너 ---
 document.addEventListener('DOMContentLoaded', () => {
     const saveResultButton = document.getElementById('save-result-button');
@@ -380,6 +400,11 @@ document.addEventListener('DOMContentLoaded', () => {
         saveResultButton.addEventListener('click', () => {
             // 캡처할 요소는 #container 전체로 변경
             const elementToCapture = document.getElementById('container'); 
+
+            // ⭐ 이 두 줄을 추가합니다!
+    updateCurrentTime(); // 페이지 로드 시 현재 시간 한 번 업데이트
+    setInterval(updateCurrentTime, 60 * 1000); // 1분(60초 * 1000밀리초)마다 시간 업데이트
+});
 
             html2canvas(elementToCapture, {
                 scale: 2, // 고해상도 캡처
