@@ -194,7 +194,7 @@ function loadQuestion() {
         backButton.classList.remove('hidden');
     }
 
-    backButton.textContent = "뒤로 가기"; // 이전 질문이 아닌 "뒤로 가기"로 텍스트 변경
+    backButton.textContent = "뒤로 가기"; // "이전 질문" 대신 "뒤로 가기"로 텍스트 변경
 
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
@@ -319,9 +319,9 @@ function displayResult(nationKey) {
             resultKeywords.appendChild(span);
         });
 
-        // ⭐ 여기 수정: innerHTML 사용 ⭐
+        // 굵은 글씨를 위해 innerHTML 사용
         resultDescription.innerHTML = resultData.description;
-        
+
         // 결과 페이지 시간 표시 업데이트
         if (currentTimeElementResult) {
             currentTimeElementResult.textContent = currentTimeElement.textContent; // 시작 페이지의 시간 가져오기
@@ -336,6 +336,7 @@ function displayResult(nationKey) {
         resultDescription.textContent = "죄송합니다. 오류가 발생했거나, 당신의 성향은 너무나 독특하여 아직 분석되지 않았습니다.";
     }
 
+    // 폭죽 효과
     confetti({
         particleCount: 100,
         spread: 70,
@@ -383,11 +384,7 @@ function updateCurrentTime() {
     if (currentTimeElement) {
         currentTimeElement.textContent = currentTimeString;
     }
-    // 결과 페이지의 시간도 함께 업데이트 (있다면)
-    // 이 부분은 displayResult에서만 보이도록 처리했으므로 여기서는 주석 처리
-    // if (currentTimeElementResult) {
-    //     currentTimeElementResult.textContent = currentTimeString;
-    // }
+    // 결과 페이지의 시간은 displayResult에서만 보이도록 처리
 }
 
 // --- DOMContentLoaded 이벤트 리스너 (모든 초기화 및 이벤트 등록) ---
@@ -404,11 +401,10 @@ document.addEventListener('DOMContentLoaded', () => {
             html2canvas(elementToCapture, {
                 scale: 2, // 고해상도 캡처
                 useCORS: true,
-                allowTaint: true, // ⭐ 배경 이미지 캡처를 돕기 위한 옵션 다시 추가
+                allowTaint: true, // 배경 이미지 캡처를 돕기 위한 옵션
                 logging: false,
-                // ⭐ #container의 실제 높이만큼만 캡처하도록
-                windowHeight: elementToCapture.scrollHeight,
-                y: 0 // ⭐ #container 자체를 캡처하므로 y는 0으로 유지 (상대적 위치)
+                windowHeight: elementToCapture.scrollHeight, // #container의 실제 높이만큼만 캡처
+                y: 0 // #container 자체를 캡처하므로 y는 0으로 유지 (상대적 위치)
             }).then(canvas => {
                 const imageDataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
