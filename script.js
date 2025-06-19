@@ -1,4 +1,4 @@
-// --- 1. 질문 데이터 정의 ---
+// --- 1. 질문 데이터 정의 (변경 없음) ---
 const questions = [
     {
         question: "새로운 일을 시작할 때 나는 주로 어떤 모습인가?",
@@ -62,11 +62,8 @@ const questions = [
     }
 ];
 
-// --- 2. 결과 데이터 정의 (매칭된 국가 정보) ---
+// --- 2. 결과 데이터 정의 (굵게 표시 수정) ---
 const results = {
-    // 성향 조합은 내부 로직에서만 사용되며 사용자에게 노출되지 않습니다.
-    // 각 국가별 키워드와 설명은 기존 논의 내용을 반영합니다.
-
     "수메르": {
         motto: "문명의 씨앗을 뿌리는 선구자",
         keywords: ["창조", "기원", "혁신", "기록", "시스템", "개척"],
@@ -127,8 +124,10 @@ const resultPage = document.getElementById('result-page');
 const startButton = document.getElementById('start-button');
 const questionCounter = document.getElementById('question-counter');
 const questionText = document.getElementById('question-text');
-const answerButtons = document.querySelectorAll('.answer-button'); // 모든 답변 버튼
+const answerButtons = document.querySelectorAll('.answer-button');
 const restartButton = document.getElementById('restart-button');
+// 추가된 진로 상담 버튼
+const consultationButton = document.getElementById('consultation-button'); 
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationMotto = document.getElementById('result-nation-motto');
@@ -138,11 +137,8 @@ const resultDescription = document.getElementById('result-description');
 // --- 4. 전역 변수 및 점수 초기화 ---
 let currentQuestionIndex = 0;
 let scores = {
-    // 축 1: 삶의 전개 방식 (S: 견고형, F: 유동형)
     S: 0, F: 0,
-    // 축 2: 성장 동력 (I: 확장형, D: 내실형)
     I: 0, D: 0,
-    // 축 3: 위기 대응 전략 (P: 실전형, R: 정신형)
     P: 0, R: 0
 };
 
@@ -152,6 +148,10 @@ answerButtons.forEach(button => {
     button.addEventListener('click', (event) => selectAnswer(event.target.dataset.answerType));
 });
 restartButton.addEventListener('click', resetTest);
+// 진로 상담 버튼 클릭 시 링크 연결
+consultationButton.addEventListener('click', () => {
+    window.open('https://forms.gle/YOUR_FORM_LINK_HERE', '_blank'); // 여기에 실제 구글 폼 링크를 넣어주세요.
+});
 
 // --- 6. 함수 정의 ---
 
@@ -166,26 +166,23 @@ function loadQuestion() {
         const q = questions[currentQuestionIndex];
         questionCounter.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
         questionText.textContent = q.question;
-        answerButtons[0].textContent = q.A; // 첫 번째 버튼은 항상 A
-        answerButtons[1].textContent = q.B; // 두 번째 버튼은 항상 B
+        answerButtons[0].textContent = q.A;
+        answerButtons[1].textContent = q.B;
     } else {
-        // 모든 질문이 끝나면 결과 계산
         calculateResult();
     }
 }
 
 function selectAnswer(answerType) {
-    // 질문 인덱스에 따라 점수 부여 (논의된 축별 점수 배정 기준 반영)
     const qIndex = currentQuestionIndex;
 
-    // 각 질문은 특정 축에만 영향을 줍니다.
-    if (qIndex >= 0 && qIndex <= 3) { // 축 1: 삶의 전개 방식 (견고 vs 유동)
+    if (qIndex >= 0 && qIndex <= 3) {
         if (answerType === 'A') scores.S++;
         else scores.F++;
-    } else if (qIndex >= 4 && qIndex <= 7) { // 축 2: 성장 동력 (확장 vs 내실)
+    } else if (qIndex >= 4 && qIndex <= 7) {
         if (answerType === 'A') scores.I++;
         else scores.D++;
-    } else if (qIndex >= 8 && qIndex <= 11) { // 축 3: 위기 대응 전략 (실전 vs 정신)
+    } else if (qIndex >= 8 && qIndex <= 11) {
         if (answerType === 'A') scores.P++;
         else scores.R++;
     }
@@ -195,28 +192,25 @@ function selectAnswer(answerType) {
 }
 
 function calculateResult() {
-    // 각 축의 최종 성향 결정
-    let axis1Type; // S, F, B1
+    let axis1Type;
     if (scores.S > scores.F) axis1Type = 'S';
     else if (scores.F > scores.S) axis1Type = 'F';
-    else axis1Type = 'B1'; // 균형형
+    else axis1Type = 'B1';
 
-    let axis2Type; // I, D, B2
+    let axis2Type;
     if (scores.I > scores.D) axis2Type = 'I';
     else if (scores.D > scores.I) axis2Type = 'D';
-    else axis2Type = 'B2'; // 균형형
+    else axis2Type = 'B2';
 
-    let axis3Type; // P, R, B3
+    let axis3Type;
     if (scores.P > scores.R) axis3Type = 'P';
     else if (scores.R > scores.P) axis3Type = 'R';
-    else axis3Type = 'B3'; // 균형형
+    else axis3Type = 'B3';
 
     const finalCombination = `${axis1Type}-${axis2Type}-${axis3Type}`;
-    let resultNationKey = ''; // 결과에 매칭될 국가의 키
+    let resultNationKey = '';
 
     // --- 7. 결과 매칭 로직 (27가지 조합 모두 커버) ---
-    // 논의된 27가지 조합 매칭 테이블을 기반으로 `if-else if` 문 작성
-    // 이 부분은 위에서 최종적으로 확정한 매칭 테이블을 그대로 옮겨 놓은 것입니다.
     if (finalCombination === 'S-I-P') { resultNationKey = '수메르'; }
     else if (finalCombination === 'S-I-B3') { resultNationKey = '아케메네스 페르시아 제국'; }
     else if (finalCombination === 'S-I-R') { resultNationKey = '발해'; }
@@ -245,8 +239,7 @@ function calculateResult() {
     else if (finalCombination === 'B1-B2-B3') { resultNationKey = '알 안달루스'; }
     else if (finalCombination === 'B1-B2-R') { resultNationKey = '대월'; }
     else {
-        // 만약의 경우 (위 27가지 조합 외의 상황 발생 시) -> 거의 발생하지 않음
-        resultNationKey = "알 수 없음"; // 에러 핸들링 또는 기본 결과 지정
+        resultNationKey = "알 수 없음";
     }
 
     displayResult(resultNationKey);
@@ -261,14 +254,15 @@ function displayResult(nationKey) {
         resultNationName.textContent = nationKey;
         resultNationMotto.textContent = resultData.motto;
         
-        resultKeywords.innerHTML = ''; // 기존 키워드 초기화
+        resultKeywords.innerHTML = '';
         resultData.keywords.forEach(keyword => {
             const span = document.createElement('span');
             span.textContent = keyword;
             resultKeywords.appendChild(span);
         });
         
-        resultDescription.innerHTML = resultData.description; // HTML 태그 적용 위해 innerHTML 사용
+        // innerHTML을 사용하여 HTML 태그(<strong>)가 적용되도록 합니다.
+        resultDescription.innerHTML = resultData.description; 
     } else {
         resultNationName.textContent = "결과를 찾을 수 없습니다.";
         resultNationMotto.textContent = "";
@@ -279,7 +273,7 @@ function displayResult(nationKey) {
 
 function resetTest() {
     currentQuestionIndex = 0;
-    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 }; // 점수 초기화
+    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
     resultPage.classList.add('hidden');
-    startPage.classList.remove('hidden'); // 시작 페이지로 돌아가기
+    startPage.classList.remove('hidden');
 }
