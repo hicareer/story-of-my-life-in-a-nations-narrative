@@ -155,16 +155,17 @@ button:active {
 
 /* 뒤로 가기 버튼 스타일 */
 #back-button {
-    background-color: #bbbbbb; /* 회색 계열 */
-    color: #444; /* 글씨 색상 */
-    margin-top: 25px; /* 다른 버튼과의 간격 */
+    /* 기존: background-color: #bbbbbb; color: #444; */
+    background-color: #d8d8d8; /* #container 배경색보다 조금 더 진한 회색 */
+    color: #666; /* 텍스트 색상도 조금 더 진하게 */
+    margin-top: 40px; /* 간격 조정! */
     font-size: 0.9em; /* 다른 버튼보다 조금 작게 */
     padding: 10px 20px; /* 패딩도 조금 작게 */
     min-width: 150px; /* 너비 조정 */
 }
 
 #back-button:hover {
-    background-color: #999999; /* 호버 시 살짝 어두운 회색 */
+    background-color: #c0c0c0; /* 호버 시 살짝 어두운 회색 */
 }
 
 #back-button:active {
@@ -369,6 +370,7 @@ button:active {
         margin-top: 10px !important;
     }
 
+
     button {
         padding: 12px 20px;
         font-size: 1em;
@@ -379,7 +381,7 @@ button:active {
         padding: 8px 15px;
         font-size: 0.85em;
         min-width: 120px;
-        margin-top: 20px;
+        margin-top: 30px; /* 모바일에서도 간격 유지 */
     }
 
     #result-nation-name {
