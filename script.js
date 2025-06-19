@@ -146,8 +146,9 @@ const questionCounter = document.getElementById('question-counter');
 const questionText = document.getElementById('question-text');
 const answerButtons = document.querySelectorAll('.answer-button');
 const restartButton = document.getElementById('restart-button');
-const consultationButton = document.getElementById('consultation-button'); // HTML에는 없지만, 혹시 모를 경우를 대비해 DOM 요소로 가져옴
+// const consultationButton = document.getElementById('consultation-button'); // HTML에는 없지만, 혹시 모를 경우를 대비해 DOM 요소로 가져옴
 const saveResultButton = document.getElementById('save-result-button');
+const backButton = document.getElementById('back-button'); // 뒤로 가기 버튼 DOM 요소 추가
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationInfo = document.getElementById('result-nation-info');
@@ -165,6 +166,8 @@ let scores = {
     I: 0, D: 0,
     P: 0, R: 0
 };
+// 사용자의 답변을 저장할 배열 (뒤로 가기 기능에 사용)
+let userAnswers = [];
 
 // --- 5. 이벤트 리스너 ---
 startButton.addEventListener('click', startTest);
@@ -172,6 +175,7 @@ answerButtons.forEach(button => {
     button.addEventListener('click', (event) => selectAnswer(event.target.dataset.answerType));
 });
 restartButton.addEventListener('click', resetTest);
+backButton.addEventListener('click', goBack); // 뒤로 가기 버튼 이벤트 리스너 추가
 
 
 // --- 6. 함수 정의 ---
@@ -179,10 +183,20 @@ restartButton.addEventListener('click', resetTest);
 function startTest() {
     startPage.classList.add('hidden');
     questionPage.classList.remove('hidden');
+    currentQuestionIndex = 0; // 시작 시 인덱스 초기화
+    userAnswers = []; // 시작 시 답변 배열 초기화
+    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 }; // 시작 시 점수 초기화
     loadQuestion();
 }
 
 function loadQuestion() {
+    // 첫 질문일 경우 뒤로 가기 버튼 숨김, 아니면 보임
+    if (currentQuestionIndex === 0) {
+        backButton.classList.add('hidden');
+    } else {
+        backButton.classList.remove('hidden');
+    }
+
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
         questionCounter.textContent = `${currentQuestionIndex + 1} / ${questions.length}`;
@@ -199,25 +213,53 @@ function loadQuestion() {
 }
 
 function selectAnswer(answerType) {
-    const qIndex = currentQuestionIndex;
-
-    // 질문 인덱스에 따른 점수 부여 로직
-    if (qIndex >= 0 && qIndex <= 3) {
-        if (answerType === 'A') scores.S++;
-        else scores.F++;
-    } else if (qIndex >= 4 && qIndex <= 7) {
-        if (answerType === 'A') scores.I++;
-        else scores.D++;
-    } else if (qIndex >= 8 && qIndex <= 11) {
-        if (answerType === 'A') scores.P++;
-        else scores.R++;
-    }
+    userAnswers[currentQuestionIndex] = answerType; // 현재 질문의 답변 저장
 
     currentQuestionIndex++;
+    calculateScoresFromAnswers(); // 답변 저장 후 점수 재계산
     loadQuestion(); // 다음 질문 로드 또는 결과 계산
 }
 
+// userAnswers 배열을 기반으로 점수를 처음부터 다시 계산하는 함수
+function calculateScoresFromAnswers() {
+    // 점수 초기화
+    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
+
+    // userAnswers에 저장된 답변들을 바탕으로 점수 재계산
+    for (let i = 0; i < currentQuestionIndex; i++) { // 현재 질문 인덱스 이전까지의 답변만 계산
+        const answerType = userAnswers[i];
+        if (answerType === undefined) continue; // 답변이 없으면 건너뛰기
+
+        // 질문 인덱스에 따른 점수 부여 로직 (selectAnswer와 동일)
+        if (i >= 0 && i <= 3) {
+            if (answerType === 'A') scores.S++;
+            else scores.F++;
+        } else if (i >= 4 && i <= 7) {
+            if (answerType === 'A') scores.I++;
+            else scores.D++;
+        } else if (i >= 8 && i <= 11) {
+            if (answerType === 'A') scores.P++;
+            else scores.R++;
+        }
+    }
+}
+
+
+function goBack() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        // 뒤로 갈 때는 userAnswers에서 해당 질문의 답변을 제거하지 않음 (다시 선택 가능하게)
+        calculateScoresFromAnswers(); // 점수 재계산
+        loadQuestion(); // 이전 질문 로드
+    }
+    // currentQuestionIndex가 0이면 loadQuestion에서 backButton이 숨겨짐
+}
+
+
 function calculateResult() {
+    // 결과 계산 전 최종 점수 계산 (혹시 뒤로 가기 후 마지막 질문 답변했을 경우를 대비)
+    calculateScoresFromAnswers();
+
     let axis1Type;
     if (scores.S > scores.F) axis1Type = 'S';
     else if (scores.F > scores.S) axis1Type = 'F';
@@ -300,27 +342,26 @@ function displayResult(nationKey) {
         resultDescription.textContent = "죄송합니다. 오류가 발생했거나, 당신의 성향은 너무나 독특하여 아직 분석되지 않았습니다.";
     }
 
-    // --- 폭죽 애니메이션 추가 ---
-    // confetti 함수 호출 (기본 설정으로 폭죽 터뜨리기)
+    // --- 폭죽 애니메이션 ---
     confetti({
-        particleCount: 100, // 폭죽 조각 개수
-        spread: 70, // 폭죽 조각이 퍼지는 각도
-        origin: { y: 0.6 } // 폭죽이 터지는 시작점 (화면 중앙에서 약간 위)
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
     });
-    // 한 번 더 터뜨려서 더 풍성하게
     setTimeout(() => {
         confetti({
             particleCount: 80,
             spread: 90,
             origin: { y: 0.7, x: 0.3 },
-            colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'] // 추가 색상
+            colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
         });
-    }, 200); // 0.2초 뒤에 한 번 더 터뜨림
+    }, 200);
 }
 
 function resetTest() {
     currentQuestionIndex = 0;
     scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
+    userAnswers = []; // 테스트 재시작 시 답변 이력 초기화
     resultPage.classList.add('hidden');
     startPage.classList.remove('hidden');
     // 진행바 초기화 (선택 사항, 시작 페이지로 돌아갈 때)
@@ -334,12 +375,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveResultButton = document.getElementById('save-result-button');
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            const elementToCapture = document.body;
+            // 캡처할 요소는 #container 전체로 변경
+            const elementToCapture = document.getElementById('container'); 
 
             html2canvas(elementToCapture, {
-                scale: 2,
+                scale: 2, // 고해상도 캡처
                 useCORS: true,
-                logging: false
+                logging: false,
+                // 스크롤이 있는 경우를 대비하여 Y축 스크롤 위치를 0으로 설정
+                windowHeight: elementToCapture.scrollHeight,
+                y: 0
             }).then(canvas => {
                 const imageDataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
