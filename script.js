@@ -149,7 +149,7 @@ const restartButton = document.getElementById('restart-button');
 // const consultationButton = document.getElementById('consultation-button'); // HTML에는 없지만, 혹시 모를 경우를 대비해 DOM 요소로 가져옴
 const saveResultButton = document.getElementById('save-result-button');
 const backButton = document.getElementById('back-button'); // 뒤로 가기 버튼 DOM 요소 추가
-const currentTimeElement = document.getElementById('current-time');
+const currentTimeElement = document.getElementById('current-time'); // 추가됨
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationInfo = document.getElementById('result-nation-info');
@@ -198,7 +198,7 @@ function loadQuestion() {
         backButton.classList.remove('hidden');
     }
 
-    // "이전 질문" 텍스트 적용 (★★★★ 이 줄이 추가되었습니다! ★★★★)
+    // "이전 질문" 텍스트 적용 
     backButton.textContent = "이전 질문"; 
 
     if (currentQuestionIndex < questions.length) {
@@ -401,10 +401,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // 캡처할 요소는 #container 전체로 변경
             const elementToCapture = document.getElementById('container'); 
 
-            // ⭐ 이 두 줄을 추가합니다!
-    updateCurrentTime(); // 페이지 로드 시 현재 시간 한 번 업데이트
-    setInterval(updateCurrentTime, 60 * 1000); // 1분(60초 * 1000밀리초)마다 시간 업데이트
-});
+            // 이 부분이 문제였습니다! updateCurrentTime과 setInterval이 잘못된 위치에 있었어요.
+            // ⭐ 이 아래 두 줄은 여기 있으면 안 됩니다! ⭐
+            // updateCurrentTime(); 
+            // setInterval(updateCurrentTime, 60 * 1000); 
 
             html2canvas(elementToCapture, {
                 scale: 2, // 고해상도 캡처
@@ -427,4 +427,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    // ⭐ 이 두 줄이 document.addEventListener('DOMContentLoaded', ...) 안에 있지만,
+    //    saveResultButton.addEventListener('click', ...) 밖으로 나와야 합니다.
+    //    새로운 코드에서는 맨 아래로 빼놨어요!
+    // updateCurrentTime(); 
+    // setInterval(updateCurrentTime, 60 * 1000);
+});
+
+// ⭐ 이 두 줄을 document.addEventListener('DOMContentLoaded', ...) 함수의 마지막 부분에
+//    독립적으로 위치시켜야 합니다. 이전 코드에서 잘못된 위치에 있었어요!
+document.addEventListener('DOMContentLoaded', () => {
+    updateCurrentTime(); // 페이지 로드 시 현재 시간 한 번 업데이트
+    setInterval(updateCurrentTime, 60 * 1000); // 1분(60초 * 1000밀리초)마다 시간 업데이트
 });
