@@ -267,6 +267,24 @@ button:hover {
     text-align: center;
 }
 
+/* 결과 페이지 저작권 문구 스타일 */
+#result-copyright {
+    font-size: 0.7em !important; /* 글자 크기를 아주 작게 */
+    color: #a0a0a0 !important; /* 연한 회색으로 변경 */
+    margin-top: 15px !important; /* 위쪽 여백 */
+    margin-bottom: 0px !important; /* 아래쪽 여백 제거 */
+    line-height: 1.3 !important;
+    font-weight: 400 !important;
+    text-align: center !important;
+}
+
+/* 모바일 환경에서도 동일하게 적용되도록 @media 쿼리 안에도 추가 */
+@media (max-width: 768px) {
+    #result-copyright {
+        font-size: 0.65em !important; /* 모바일에서 더 작게 */
+        margin-top: 10px !important;
+    }
+}
 
 /* 반응형 웹 디자인 (모바일 최적화) */
 @media (max-width: 768px) {
