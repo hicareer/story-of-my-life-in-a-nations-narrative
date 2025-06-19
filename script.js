@@ -149,6 +149,7 @@ const restartButton = document.getElementById('restart-button');
 const saveResultButton = document.getElementById('save-result-button');
 const backButton = document.getElementById('back-button');
 const currentTimeElement = document.getElementById('current-time');
+const currentTimeElementResult = document.getElementById('current-time-result'); // 결과 페이지 시간 요소
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationInfo = document.getElementById('result-nation-info');
@@ -193,7 +194,7 @@ function loadQuestion() {
         backButton.classList.remove('hidden');
     }
 
-    backButton.textContent = "이전 질문";
+    backButton.textContent = "뒤로 가기"; // 이전 질문이 아닌 "뒤로 가기"로 텍스트 변경
 
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
@@ -318,7 +319,15 @@ function displayResult(nationKey) {
             resultKeywords.appendChild(span);
         });
 
+        // ⭐ 여기 수정: innerHTML 사용 ⭐
         resultDescription.innerHTML = resultData.description;
+        
+        // 결과 페이지 시간 표시 업데이트
+        if (currentTimeElementResult) {
+            currentTimeElementResult.textContent = currentTimeElement.textContent; // 시작 페이지의 시간 가져오기
+            currentTimeElementResult.classList.remove('hidden'); // hidden 클래스 제거하여 보이게 함
+        }
+
     } else {
         resultNationName.textContent = "결과를 찾을 수 없습니다.";
         resultNationInfo.textContent = "";
@@ -351,6 +360,10 @@ function resetTest() {
     if (progressBar) {
         progressBar.style.width = '0%';
     }
+    // 결과 페이지 시간 다시 숨김
+    if (currentTimeElementResult) {
+        currentTimeElementResult.classList.add('hidden');
+    }
 }
 
 // --- 현재 시간 업데이트 함수 ---
@@ -370,6 +383,11 @@ function updateCurrentTime() {
     if (currentTimeElement) {
         currentTimeElement.textContent = currentTimeString;
     }
+    // 결과 페이지의 시간도 함께 업데이트 (있다면)
+    // 이 부분은 displayResult에서만 보이도록 처리했으므로 여기서는 주석 처리
+    // if (currentTimeElementResult) {
+    //     currentTimeElementResult.textContent = currentTimeString;
+    // }
 }
 
 // --- DOMContentLoaded 이벤트 리스너 (모든 초기화 및 이벤트 등록) ---
@@ -381,18 +399,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. 결과 이미지 저장하기 버튼 이벤트 리스너
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            const containerElement = document.getElementById('container'); // #container 요소 가져오기
+            const elementToCapture = document.getElementById('container'); // #container 요소 자체를 캡처 대상으로
 
-            // html2canvas 캡처 옵션
-            html2canvas(document.body, { // ⭐ 캡처 대상을 body로 설정
+            html2canvas(elementToCapture, {
                 scale: 2, // 고해상도 캡처
                 useCORS: true,
+                allowTaint: true, // ⭐ 배경 이미지 캡처를 돕기 위한 옵션 다시 추가
                 logging: false,
-                // ⭐ #container의 위치와 높이만큼만 캡처하도록 설정
-                x: containerElement.offsetLeft,
-                y: containerElement.offsetTop,
-                width: containerElement.offsetWidth,
-                height: containerElement.offsetHeight
+                // ⭐ #container의 실제 높이만큼만 캡처하도록
+                windowHeight: elementToCapture.scrollHeight,
+                y: 0 // ⭐ #container 자체를 캡처하므로 y는 0으로 유지 (상대적 위치)
             }).then(canvas => {
                 const imageDataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
