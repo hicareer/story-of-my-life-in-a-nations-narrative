@@ -137,7 +137,14 @@ button:hover {
     font-size: 1.8em;
     font-weight: 600; /* Bold 굵기 적용 */
     color: #6ab870; /* 초록 계열 */
-    margin-bottom: 5px;
+    margin-bottom: 2px; /* 국가 정보와의 간격 조절 */
+}
+
+#result-nation-info {
+    font-size: 0.9em; /* 연한 회색 느낌 */
+    color: #7f8c8d;
+    margin-bottom: 10px; /* 핵심 문구와의 간격 조절 */
+    font-weight: 400; /* Regular 굵기 */
 }
 
 #result-nation-motto {
@@ -157,11 +164,11 @@ button:hover {
 }
 
 #result-keywords span {
-    background-color: #ecf0f1;
-    color: #555;
-    padding: 8px 15px;
+    background-color: rgba(242, 201, 76, 0.7); /* 투명한 노란색 */
+    color: #333; /* 키워드 텍스트 색상 변경 (가독성 확보) */
+    padding: 8px 12px; /* 좌우 패딩 줄임 */
     border-radius: 15px;
-    font-size: 0.95em;
+    font-size: 0.85em; /* 글씨 크기 줄임 */
     font-weight: 400;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
@@ -184,13 +191,14 @@ button:hover {
 #result-image {
     max-width: 150px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* 이미지와 국가명 사이 간격 줄임 */
 }
 
 /* 추가 버튼 스타일 (진로 상담 접수하기) */
 #consultation-button { /* ID 선택자로 변경하여 정확히 해당 버튼에만 적용 */
     background-color: #f2c94c; /* 요청하신 노란색 계열 */
     margin-top: 10px;
+    color: #333; /* 글자색 검정 또는 어두운 색으로 변경 */
 }
 #consultation-button:hover {
     background-color: #e0b43e; /* 호버 시 살짝 어두운 노란색 */
@@ -228,5 +236,10 @@ button:hover {
 
     #result-nation-motto {
         font-size: 1.1em;
+    }
+
+    #result-keywords span {
+        font-size: 0.8em;
+        padding: 6px 10px;
     }
 }
