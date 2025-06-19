@@ -323,7 +323,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // saveResultButton이 존재하는 경우에만 이벤트 리스너를 추가
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            const resultPageToCapture = document.getElementById('result-page'); // 결과 페이지 전체를 캡처
+            // 결과 페이지의 모든 콘텐츠와 배경을 포함하기 위해 body 또는 최상위 요소를 캡처
+            const elementToCapture = document.body; 
+            // 또는 더 정확하게는 id="container" 바깥의 요소 중, 배경까지 포함할 수 있는 가장 적절한 상위 요소 (body)
             
             // html2canvas를 사용하여 결과 페이지를 캔버스로 변환
             html2canvas(resultPageToCapture, {
