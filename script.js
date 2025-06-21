@@ -197,7 +197,7 @@ function loadQuestion() {
         backButton.classList.remove('hidden');
     }
 
-    // "이전 질문" 텍스트 적용 (★★★★ 이 줄이 추가되었습니다! ★★★★)
+    // "이전 질문" 텍스트 적용
     backButton.textContent = "이전 질문"; 
 
     if (currentQuestionIndex < questions.length) {
