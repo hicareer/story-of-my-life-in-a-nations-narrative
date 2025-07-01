@@ -1,4 +1,3 @@
-// --- 1. 질문 데이터 정의 ---
 const questions = [
     {
         question: "새로운 일을 시작할 때<br>나는 주로 어떤 모습인가?",
@@ -62,7 +61,6 @@ const questions = [
     }
 ];
 
-// --- 2. 결과 데이터 정의 (굵게 표시 수정 및 국가 정보 추가 완료) ---
 const results = {
     "수메르": {
         period: "BC 4500년 ~ BC 1900년 경",
@@ -136,7 +134,6 @@ const results = {
     }
 };
 
-// --- 3. DOM 요소 가져오기 ---
 const startPage = document.getElementById('start-page');
 const questionPage = document.getElementById('question-page');
 const resultPage = document.getElementById('result-page');
@@ -146,9 +143,8 @@ const questionCounter = document.getElementById('question-counter');
 const questionText = document.getElementById('question-text');
 const answerButtons = document.querySelectorAll('.answer-button');
 const restartButton = document.getElementById('restart-button');
-// const consultationButton = document.getElementById('consultation-button'); // HTML에는 없지만, 혹시 모를 경우를 대비해 DOM 요소로 가져옴
 const saveResultButton = document.getElementById('save-result-button');
-const backButton = document.getElementById('back-button'); // 뒤로 가기 버튼 DOM 요소 추가
+const backButton = document.getElementById('back-button');
 
 const resultNationName = document.getElementById('result-nation-name');
 const resultNationInfo = document.getElementById('result-nation-info');
@@ -156,49 +152,40 @@ const resultNationMotto = document.getElementById('result-nation-motto');
 const resultKeywords = document.getElementById('result-keywords');
 const resultDescription = document.getElementById('result-description');
 
-// 진행바 DOM 요소
-const progressBar = document.getElementById('progress-bar'); 
+const progressBar = document.getElementById('progress-bar');
 
-// --- 4. 전역 변수 및 점수 초기화 ---
 let currentQuestionIndex = 0;
 let scores = {
     S: 0, F: 0,
     I: 0, D: 0,
     P: 0, R: 0
 };
-// 사용자의 답변을 저장할 배열 (뒤로 가기 기능에 사용)
 let userAnswers = [];
 
-// --- 5. 이벤트 리스너 ---
 startButton.addEventListener('click', startTest);
 answerButtons.forEach(button => {
     button.addEventListener('click', (event) => selectAnswer(event.target.dataset.answerType));
 });
 restartButton.addEventListener('click', resetTest);
-backButton.addEventListener('click', goBack); // 뒤로 가기 버튼 이벤트 리스너 추가
-
-
-// --- 6. 함수 정의 ---
+backButton.addEventListener('click', goBack);
 
 function startTest() {
     startPage.classList.add('hidden');
     questionPage.classList.remove('hidden');
-    currentQuestionIndex = 0; // 시작 시 인덱스 초기화
-    userAnswers = []; // 시작 시 답변 배열 초기화
-    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 }; // 시작 시 점수 초기화
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
     loadQuestion();
 }
 
 function loadQuestion() {
-    // 첫 질문일 경우 뒤로 가기 버튼 숨김, 아니면 보임
     if (currentQuestionIndex === 0) {
         backButton.classList.add('hidden');
     } else {
         backButton.classList.remove('hidden');
     }
 
-    // "이전 질문" 텍스트 적용
-    backButton.textContent = "이전 질문"; 
+    backButton.textContent = "이전 질문";
 
     if (currentQuestionIndex < questions.length) {
         const q = questions[currentQuestionIndex];
@@ -207,7 +194,6 @@ function loadQuestion() {
         answerButtons[0].textContent = q.A;
         answerButtons[1].textContent = q.B;
 
-        // 진행바 업데이트 로직
         const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
         progressBar.style.width = `${progress}%`;
     } else {
@@ -216,24 +202,20 @@ function loadQuestion() {
 }
 
 function selectAnswer(answerType) {
-    userAnswers[currentQuestionIndex] = answerType; // 현재 질문의 답변 저장
+    userAnswers[currentQuestionIndex] = answerType;
 
     currentQuestionIndex++;
-    calculateScoresFromAnswers(); // 답변 저장 후 점수 재계산
-    loadQuestion(); // 다음 질문 로드 또는 결과 계산
+    calculateScoresFromAnswers();
+    loadQuestion();
 }
 
-// userAnswers 배열을 기반으로 점수를 처음부터 다시 계산하는 함수
 function calculateScoresFromAnswers() {
-    // 점수 초기화
     scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
 
-    // userAnswers에 저장된 답변들을 바탕으로 점수 재계산
-    for (let i = 0; i < currentQuestionIndex; i++) { // 현재 질문 인덱스 이전까지의 답변만 계산
+    for (let i = 0; i < currentQuestionIndex; i++) {
         const answerType = userAnswers[i];
-        if (answerType === undefined) continue; // 답변이 없으면 건너뛰기
+        if (answerType === undefined) continue;
 
-        // 질문 인덱스에 따른 점수 부여 로직 (selectAnswer와 동일)
         if (i >= 0 && i <= 3) {
             if (answerType === 'A') scores.S++;
             else scores.F++;
@@ -247,41 +229,35 @@ function calculateScoresFromAnswers() {
     }
 }
 
-
 function goBack() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
-        // 뒤로 갈 때는 userAnswers에서 해당 질문의 답변을 제거하지 않음 (다시 선택 가능하게)
-        calculateScoresFromAnswers(); // 점수 재계산
-        loadQuestion(); // 이전 질문 로드
+        calculateScoresFromAnswers();
+        loadQuestion();
     }
-    // currentQuestionIndex가 0이면 loadQuestion에서 backButton이 숨겨짐
 }
 
-
 function calculateResult() {
-    // 결과 계산 전 최종 점수 계산 (혹시 뒤로 가기 후 마지막 질문 답변했을 경우를 대비)
     calculateScoresFromAnswers();
 
     let axis1Type;
     if (scores.S > scores.F) axis1Type = 'S';
     else if (scores.F > scores.S) axis1Type = 'F';
-    else axis1Type = 'B1'; // 균형점
+    else axis1Type = 'B1';
 
     let axis2Type;
     if (scores.I > scores.D) axis2Type = 'I';
     else if (scores.D > scores.I) axis2Type = 'D';
-    else axis2Type = 'B2'; // 균형점
+    else axis2Type = 'B2';
 
     let axis3Type;
     if (scores.P > scores.R) axis3Type = 'P';
     else if (scores.R > scores.P) axis3Type = 'R';
-    else axis3Type = 'B3'; // 균형점
+    else axis3Type = 'B3';
 
     const finalCombination = `${axis1Type}-${axis2Type}-${axis3Type}`;
     let resultNationKey = '';
 
-    // --- 7. 결과 매칭 로직 (27가지 조합 모두 커버) ---
     if (finalCombination === 'S-I-P') { resultNationKey = '수메르'; }
     else if (finalCombination === 'S-I-B3') { resultNationKey = '아케메네스 페르시아 제국'; }
     else if (finalCombination === 'S-I-R') { resultNationKey = '발해'; }
@@ -310,8 +286,7 @@ function calculateResult() {
     else if (finalCombination === 'B1-B2-B3') { resultNationKey = '알 안달루스'; }
     else if (finalCombination === 'B1-B2-R') { resultNationKey = '대월'; }
     else {
-        // 모든 조합이 일치하지 않을 경우, 기본 결과 설정 (예: 수메르 또는 오류 메시지)
-        resultNationKey = "알 수 없음"; // "알 수 없음"으로 표시되도록 유지
+        resultNationKey = "알 수 없음";
     }
 
     displayResult(resultNationKey);
@@ -324,18 +299,16 @@ function displayResult(nationKey) {
     const resultData = results[nationKey];
     if (resultData) {
         resultNationName.textContent = nationKey;
-        // 국가 정보 표시
         resultNationInfo.textContent = `약 ${resultData.period} ${resultData.continent} 대륙의 나라`;
         resultNationMotto.textContent = resultData.motto;
 
-        resultKeywords.innerHTML = ''; // 기존 키워드 초기화
+        resultKeywords.innerHTML = '';
         resultData.keywords.forEach(keyword => {
             const span = document.createElement('span');
             span.textContent = keyword;
             resultKeywords.appendChild(span);
         });
 
-        // innerHTML을 사용하여 HTML 태그(<strong>)가 적용되도록 합니다.
         resultDescription.innerHTML = resultData.description;
     } else {
         resultNationName.textContent = "결과를 찾을 수 없습니다.";
@@ -345,7 +318,6 @@ function displayResult(nationKey) {
         resultDescription.textContent = "죄송합니다. 오류가 발생했거나, 당신의 성향은 너무나 독특하여 아직 분석되지 않았습니다.";
     }
 
-    // --- 폭죽 애니메이션 ---
     confetti({
         particleCount: 100,
         spread: 70,
@@ -364,31 +336,24 @@ function displayResult(nationKey) {
 function resetTest() {
     currentQuestionIndex = 0;
     scores = { S: 0, F: 0, I: 0, D: 0, P: 0, R: 0 };
-    userAnswers = []; // 테스트 재시작 시 답변 이력 초기화
+    userAnswers = [];
     resultPage.classList.add('hidden');
     startPage.classList.remove('hidden');
-    // 진행바 초기화 (선택 사항, 시작 페이지로 돌아갈 때)
     if (progressBar) {
         progressBar.style.width = '0%';
     }
 }
 
-// --- 결과 이미지 저장하기 버튼 이벤트 리스너 ---
 document.addEventListener('DOMContentLoaded', () => {
     const saveResultButton = document.getElementById('save-result-button');
     if (saveResultButton) {
         saveResultButton.addEventListener('click', () => {
-            // 캡처할 요소를 body 전체로 변경 (이 줄만 수정됩니다)
-            const elementToCapture = document.body; // 기존: document.getElementById('container');
+            const elementToCapture = document.body;
 
             html2canvas(elementToCapture, {
-                scale: 2, // 고해상도 캡처
+                scale: 2,
                 useCORS: true,
                 logging: false,
-                // 스크롤이 있는 경우를 대비하여 Y축 스크롤 위치를 0으로 설정
-                // body를 캡처할 때는 window.scrollY를 사용하는 것이 더 정확할 수 있습니다.
-                // windowHeight: elementToCapture.scrollHeight, // body 캡처 시 제거하거나 조정 필요
-                // y: 0 // body 캡처 시 제거하거나 조정 필요
             }).then(canvas => {
                 const imageDataURL = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
@@ -400,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(error => {
                 console.error('이미지 저장 중 오류 발생:', error);
                 alert('결과 이미지 저장에 실패했습니다. 다시 시도해 주세요.');
-        
             });
         });
     }
